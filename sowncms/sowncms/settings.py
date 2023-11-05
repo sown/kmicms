@@ -88,6 +88,7 @@ SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 INSTALLED_APPS = [
     "home",
     "search",
+    "standard_page",
     "compressor",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -207,5 +208,15 @@ MEDIA_URL = "/media/"
 WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.database",
+    }
+}
+
+
+WAGTAILADMIN_RICH_TEXT_EDITORS = {
+    'all-but-headings': {
+        'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea',
+        'OPTIONS': {
+            'features': ['bold', 'italic', 'link', 'document-link', 'ol', 'ul', 'hr', 'code', 'superscript', 'subscript', 'strikethrough', 'blockquote', 'image', 'embed']
+        }
     }
 }

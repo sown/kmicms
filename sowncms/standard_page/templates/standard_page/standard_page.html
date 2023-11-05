@@ -1,0 +1,14 @@
+{% extends "layouts/page.html" %}
+
+{% block content %}
+    <div class="container">
+        {% if page.show_title %}
+            <h1 class="heading">{{ page.title }}</h1>
+        {% endif %}
+        {% for block in page.content %}
+            <section class="block-{{ block.block_type }}">
+                {{ block }}
+            </section>
+        {% endfor %}
+    </div>
+{% endblock %}
