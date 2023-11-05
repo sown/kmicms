@@ -86,6 +86,7 @@ SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 
 
 INSTALLED_APPS = [
+    "core",
     "home",
     "search",
     "standard_page",
