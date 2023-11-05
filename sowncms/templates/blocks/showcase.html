@@ -1,0 +1,12 @@
+{% load wagtailimages_tags %}
+{# Some styles are applied by block-showcase #}
+{% image value.image width-1900 height-1216 as tmp_image %}
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <div class="col-lg-6 {% if value.direction == 'right' %}order-lg-2 {% endif %}text-white showcase-img" style="background-image: url('{{ tmp_image.url }}')"></div>
+        <div class="col-lg-6 {% if value.direction == 'right' %}order-lg-1 {% endif %}my-auto showcase-text">
+            <h2>{{ value.title }}</h2>
+            <p class="lead mb-0">{{ value.description }}</p>
+        </div>
+    </div>
+</div>

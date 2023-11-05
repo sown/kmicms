@@ -8,8 +8,20 @@ class MastheadBlock(blocks.StructBlock):
 
     class Meta:
         icon = "doc-empty-inverse"
-        template = "components/masthead.html"
+        template = "blocks/masthead.html"
+
+
+class ShowcaseBlock(blocks.StructBlock):
+    direction = blocks.ChoiceBlock([('left', 'Image on Left'), ('right', 'Image on Right')])
+    image = ImageChooserBlock()
+    title = blocks.TextBlock()
+    description = blocks.TextBlock()
+
+    class Meta:
+        template = "blocks/showcase.html"
 
 
 class HomePageBlock(blocks.StreamBlock):
+    rich_text = blocks.RichTextBlock(template="blocks/rich_text.html")
     masthead = MastheadBlock()
+    showcase = ShowcaseBlock()
