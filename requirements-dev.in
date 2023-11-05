@@ -1,0 +1,12 @@
+pip-tools
+
+-r requirements.txt
+ruff
+isort
+pytest
+pytest-cov
+pytest-django
+
+mypy
+django-stubs[compatible-mypy]
+django-filter-stubs

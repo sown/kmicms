@@ -1,0 +1,14 @@
+{% extends "layouts/page.html" %}
+
+{% block content %}
+    {% for block in page.content %}
+        <section class="block-{{ block.block_type }}">
+            {{ block }}
+        </section>
+    {% endfor %}
+
+    {% include "components/icon_grid.html" %}
+    {% include "components/showcase.html" %}
+    {% include "components/testimonials.html" %}
+    {% include "components/call_to_action.html" %}
+{% endblock %}

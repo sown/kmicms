@@ -1,0 +1,2 @@
+wagtail>=5.2,<5.3  # LTS
+django>=4.2,<4.3  # LTS
