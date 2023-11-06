@@ -124,6 +124,12 @@ MIDDLEWARE = [
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
+if DEBUG:
+    INSTALLED_APPS.append("debug_toolbar")
+    MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
+
+    INTERNAL_IPS = ["127.0.0.1"]
+
 ROOT_URLCONF = "sowncms.urls"
 
 TEMPLATES = [
@@ -222,3 +228,6 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
         }
     }
 }
+
+# Brand Settings
+AVAILABLE_BRANDS = [("sown", "SOWN")]

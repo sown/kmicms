@@ -1,6 +1,9 @@
 pip-tools
 
 -r requirements.txt
+
+django-debug-toolbar
+
 ruff
 isort
 pytest
