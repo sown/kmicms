@@ -1,3 +1,5 @@
+{% load wagtailcore_tags %}
+{% wagtail_site as current_site %}
 <footer class="footer bg-light">
     <div class="container">
         <div class="row">
@@ -11,19 +13,20 @@
                     <li class="list-inline-item">⋅</li>
                     <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
                 </ul>
-                <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2023. All Rights Reserved.</p>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; {{ current_site }} 2007 - {% now "Y" %}. All Rights Reserved.</p>
             </div>
             <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                 <ul class="list-inline mb-0">
+                    {% if settings.core.SocialMediaSettings.github_org %}
                     <li class="list-inline-item me-4">
-                        <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                        <a href="https://github.com/{{settings.core.SocialMediaSettings.github_org}}" aria-label="GitHub"><i class="bi bi-github fs-3" aria-hidden="true"></i></a>
                     </li>
+                    {% endif %}
+                    {% if settings.core.SocialMediaSettings.discord_invite %}
                     <li class="list-inline-item me-4">
-                        <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                        <a href="{{ settings.core.SocialMediaSettings.discord_invite }}" aria-label="Discord Invite"><i class="bi bi-discord fs-3" aria-hidden="true"></i></a>
                     </li>
-                    <li class="list-inline-item">
-                        <a href="#!"><i class="bi-instagram fs-3"></i></a>
-                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
