@@ -59,7 +59,7 @@ DEBUG = getattr(configuration, "DEBUG", False)
 EMAIL = getattr(configuration, "EMAIL", {})
 LANGUAGE_CODE = getattr(configuration, "LANGUAGE_CODE", "en-us")
 TIME_ZONE = getattr(configuration, "TIME_ZONE", "UTC")
-WAGTAIL_SITE_NAME = getattr(configuration, "WAGTAIL_SITE_NAME", "SOWN")
+WAGTAIL_SITE_NAME = getattr(configuration, "WAGTAIL_SITE_NAME", "SUWS / SOWN")
 
 #
 # Database
@@ -236,7 +236,7 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 }
 
 # Brand Settings
-AVAILABLE_BRANDS = [("sown", "SOWN")]
+AVAILABLE_BRANDS = [("sown", "SOWN"), ("suws", "SUWS")]
 
 # Crispy
 

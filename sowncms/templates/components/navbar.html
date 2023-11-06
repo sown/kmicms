@@ -4,7 +4,7 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% pageurl current_site.root_page %}">
-      <img src="{% static_for_brand "img/logo.svg" %}" alt="SOWN Logo" height="50px">
+      <img src="{% static_for_brand "img/logo.svg" %}" alt="{{ current_site.site_name }} Logo" height="50px">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
