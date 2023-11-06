@@ -86,12 +86,17 @@ SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 
 
 INSTALLED_APPS = [
+    "contact",
     "core",
     "home",
     "standard_page",
 
     # 3rd party
     "compressor",
+    "crispy_forms",
+    "crispy_bootstrap5",
+
+    # Wagtail / Django
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
     "wagtail.contrib.settings",
@@ -232,3 +237,8 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
 
 # Brand Settings
 AVAILABLE_BRANDS = [("sown", "SOWN")]
+
+# Crispy
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"

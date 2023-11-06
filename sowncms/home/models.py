@@ -8,7 +8,7 @@ from .blocks import HomePageBlock
 
 class HomePage(Page):
     parent_page_types = ["wagtailcore.Page"]
-    subpage_types = ["standard_page.StandardPage"]
+    subpage_types = ["standard_page.StandardPage", "contact.ContactFormPage"]
 
     content = StreamField(HomePageBlock(), use_json_field=True)
 

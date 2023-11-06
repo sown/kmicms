@@ -1,2 +1,8 @@
 wagtail>=5.2,<5.3  # LTS
 django>=4.2,<4.3  # LTS
+
+django-crispy-forms
+crispy-bootstrap5
+
+pydantic>=2.4,<3
+requests

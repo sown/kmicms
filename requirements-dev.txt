@@ -4,6 +4,10 @@
 #
 #    pip-compile requirements-dev.in
 #
+annotated-types==0.6.0
+    # via
+    #   -r requirements.txt
+    #   pydantic
 anyascii==0.3.2
     # via
     #   -r requirements.txt
@@ -30,6 +34,8 @@ click==8.1.7
     # via pip-tools
 coverage[toml]==7.3.2
     # via pytest-cov
+crispy-bootstrap5==2023.10
+    # via -r requirements.txt
 defusedxml==0.7.1
     # via
     #   -r requirements.txt
@@ -37,6 +43,8 @@ defusedxml==0.7.1
 django==4.2.7
     # via
     #   -r requirements.txt
+    #   crispy-bootstrap5
+    #   django-crispy-forms
     #   django-debug-toolbar
     #   django-filter
     #   django-modelcluster
@@ -47,6 +55,10 @@ django==4.2.7
     #   django-treebeard
     #   djangorestframework
     #   wagtail
+django-crispy-forms==2.1
+    # via
+    #   -r requirements.txt
+    #   crispy-bootstrap5
 django-debug-toolbar==4.2.0
     # via -r requirements-dev.in
 django-filter==23.3
@@ -141,6 +153,12 @@ pip-tools==7.3.0
     # via -r requirements-dev.in
 pluggy==1.3.0
     # via pytest
+pydantic==2.4.2
+    # via -r requirements.txt
+pydantic-core==2.10.1
+    # via
+    #   -r requirements.txt
+    #   pydantic
 pyproject-hooks==1.0.0
     # via build
 pytest==7.4.3
@@ -193,11 +211,14 @@ types-requests==2.31.0.10
     # via djangorestframework-stubs
 typing-extensions==4.8.0
     # via
+    #   -r requirements.txt
     #   django-filter-stubs
     #   django-stubs
     #   django-stubs-ext
     #   djangorestframework-stubs
     #   mypy
+    #   pydantic
+    #   pydantic-core
 urllib3==2.0.7
     # via
     #   -r requirements.txt
