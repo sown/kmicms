@@ -1,11 +1,11 @@
 from django.db import models
-
 from wagtail.admin.panels import FieldPanel, TitleFieldPanel
-from wagtail.models import Page
 from wagtail.fields import StreamField
+from wagtail.models import Page
 from wagtail.search import index
 
 from .blocks import ContentBlock
+
 
 class StandardPage(Page):
 

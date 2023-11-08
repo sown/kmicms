@@ -1,11 +1,9 @@
-from django import template
 from urllib.parse import quote, urljoin
 
+from django import template
 from django.apps import apps
-from django.utils.html import conditional_escape
 from django.templatetags.static import PrefixNode
-
-from wagtail.models import Site
+from django.utils.html import conditional_escape
 
 from core.models import SiteSettings
 

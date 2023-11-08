@@ -1,7 +1,6 @@
 from django import template
 from wagtail.models import Site
 
-
 register = template.Library()
 
 

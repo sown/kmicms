@@ -1,6 +1,5 @@
-from wagtail.contrib.forms.models import FormSubmission
-
 import requests
+from wagtail.contrib.forms.models import FormSubmission
 
 
 def submit_discord_webhook_for_form(webhook: str, content: str, form_submission: FormSubmission) -> None:

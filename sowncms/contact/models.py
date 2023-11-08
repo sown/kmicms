@@ -1,14 +1,13 @@
 from django.db import models
 from modelcluster.fields import ParentalKey
-from wagtail.admin.panels import (
-    FieldPanel, MultiFieldPanel, InlinePanel
-)
+from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
+from wagtail.contrib.forms.models import AbstractFormField, FormMixin
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
-from wagtail.models import Page
 from wagtail.fields import RichTextField
-from wagtail.contrib.forms.models import FormMixin, AbstractFormField
+from wagtail.models import Page
 
 from integrations.discord import submit_discord_webhook_for_form
+
 
 class FormField(AbstractFormField):
     page = ParentalKey('ContactFormPage', on_delete=models.CASCADE, related_name='form_fields')
