@@ -86,10 +86,10 @@ SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 
 
 INSTALLED_APPS = [
-    "contact",
     "core",
-    "home",
-    "standard_page",
+    "pages.contact",
+    "pages.home",
+    "pages.standard_page",
 
     # 3rd party
     "compressor",

@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class StandardPageConfig(AppConfig):
+class ContactConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "standard_page"
+    name = "pages.contact"
