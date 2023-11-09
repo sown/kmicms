@@ -87,6 +87,7 @@ SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 
 INSTALLED_APPS = [
     "core",
+    "navigation",
     "pages.contact",
     "pages.home",
     "pages.standard_page",
@@ -131,7 +132,7 @@ MIDDLEWARE = [
 ]
 
 if DEBUG:
-    INSTALLED_APPS.append("debug_toolbar")
+    INSTALLED_APPS.extend(["debug_toolbar", "wagtail.contrib.styleguide"])
     MIDDLEWARE = ["debug_toolbar.middleware.DebugToolbarMiddleware"] + MIDDLEWARE
 
     INTERNAL_IPS = ["127.0.0.1"]

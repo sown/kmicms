@@ -5,27 +5,31 @@
         <div class="row">
             <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                 <ul class="list-inline mb-2">
-                    <li class="list-inline-item"><a href="#!">About</a></li>
-                    <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Contact</a></li>
-                    <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                    <li class="list-inline-item">⋅</li>
-                    <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                    {% for block in settings.navigation.NavigationSettings.main_menu %}
+                        {% if block.block_type == "page_link" %}
+                            <li class="list-inline-item"><a href="{% pageurl block.value.page %}">{{ block.value.page.title }}</a></li>
+                        {% elif block.block_type == "external_link" %}
+                            <li class="list-inline-item"><a href="{{ block.value.url }}">{{ block.value.label }}</a></li>
+                        {% endif %}
+                        
+                        {% if not forloop.last %}
+                            <li class="list-inline-item">⋅</li>
+                        {% endif %}
+                    {% endfor %}
                 </ul>
                 <p class="text-muted small mb-4 mb-lg-0">&copy; {{ current_site.site_name }} 2007 - {% now "Y" %}. All Rights Reserved.</p>
             </div>
             <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                 <ul class="list-inline mb-0">
                     {% if settings.core.SiteSettings.github_org %}
-                    <li class="list-inline-item me-4">
-                        <a href="https://github.com/{{settings.core.SiteSettings.github_org}}" aria-label="GitHub"><i class="bi bi-github fs-3" aria-hidden="true"></i></a>
-                    </li>
+                        <li class="list-inline-item me-4">
+                            <a href="https://github.com/{{settings.core.SiteSettings.github_org}}" aria-label="GitHub"><i class="bi bi-github fs-3" aria-hidden="true"></i></a>
+                        </li>
                     {% endif %}
                     {% if settings.core.SiteSettings.discord_invite %}
-                    <li class="list-inline-item me-4">
-                        <a href="{{ settings.core.SiteSettings.discord_invite }}" aria-label="Discord Invite"><i class="bi bi-discord fs-3" aria-hidden="true"></i></a>
-                    </li>
+                        <li class="list-inline-item me-4">
+                            <a href="{{ settings.core.SiteSettings.discord_invite }}" aria-label="Discord Invite"><i class="bi bi-discord fs-3" aria-hidden="true"></i></a>
+                        </li>
                     {% endif %}
                 </ul>
             </div>
