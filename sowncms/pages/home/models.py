@@ -3,14 +3,14 @@ from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
 
-from .blocks import HomePageBlock
+from core.blocks import BodyBlock
 
 
 class HomePage(Page):
     parent_page_types = ["wagtailcore.Page"]
     subpage_types = ["standard_page.StandardPage", "contact.ContactFormPage"]
 
-    content = StreamField(HomePageBlock(), use_json_field=True)
+    content = StreamField(BodyBlock(), use_json_field=True)
 
     content_panels = [
         TitleFieldPanel("title"),

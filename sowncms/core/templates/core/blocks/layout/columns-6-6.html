@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for block in value.left_content %}
+                <div class="block-{{ block.block_type }}">
+                    {{ block }}
+                </div>
+            {% endfor %}
+        </div>
+        <div class="col">
+            {% for block in value.right_content %}
+                <div class="block-{{ block.block_type }}">
+                    {{ block }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>

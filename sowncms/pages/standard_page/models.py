@@ -4,12 +4,12 @@ from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
 
-from .blocks import ContentBlock
+from core.blocks import StoryBlock
 
 
 class StandardPage(Page):
 
-    content = StreamField(ContentBlock(), use_json_field=True)
+    content = StreamField(StoryBlock(), use_json_field=True)
     show_breadcrumbs = models.BooleanField(help_text="Show breadcrumbs at top of page?", default=True)
     show_title = models.BooleanField(help_text="Show page title at top of page?", default=True)
 

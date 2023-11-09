@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load wagtailimages_tags wagtailcore_tags %}
 {% image value.image width-1900 height-1216 as tmp_image %}
 <section class="masthead" style="background: url('{{ tmp_image.url }}') no-repeat center center">
     <div class="container position-relative">
@@ -6,6 +6,11 @@
             <div class="col-xl-6">
                 <div class="text-center text-white">
                     {{ value.content }}
+                </div>
+                <div class="text-center mt-5">
+                    {% for cta_block in value.cta_list %}
+                        {% include_block cta_block %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
