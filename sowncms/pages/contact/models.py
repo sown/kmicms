@@ -54,3 +54,7 @@ class ContactFormPage(AbstractDiscordFormPage):
         InlinePanel('form_fields', label="Form fields"),
         FieldPanel('thank_you_text'),
     ]
+
+    class Meta:
+        verbose_name = "contact page"
+        verbose_name_plural = "contact pages"
