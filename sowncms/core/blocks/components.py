@@ -18,6 +18,7 @@ class ShowcaseBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.TextBlock()
     description = blocks.TextBlock()
+    cta_list = blocks.ListBlock(CallToActionBlock(), max_num=3, label="Call to Action buttons")
 
     class Meta:
         template = "core/blocks/components/showcase.html"

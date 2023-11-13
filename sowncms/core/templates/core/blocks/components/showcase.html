@@ -1,4 +1,4 @@
-{% load wagtailimages_tags %}
+{% load wagtailcore_tags wagtailimages_tags %}
 {# Some styles are applied by block-showcase #}
 {% image value.image width-1900 height-1216 as tmp_image %}
 <div class="container-fluid p-0">
@@ -7,6 +7,13 @@
         <div class="col-lg-6 {% if value.direction == 'right' %}order-lg-1 {% endif %}my-auto showcase-text">
             <h2>{{ value.title }}</h2>
             <p class="lead mb-0">{{ value.description }}</p>
+            {% if value.cta_list %}
+                <div class="text-center mt-5">
+                    {% for cta_block in value.cta_list %}
+                        {% include_block cta_block %}
+                    {% endfor %}
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
