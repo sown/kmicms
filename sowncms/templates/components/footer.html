@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                 <ul class="list-inline mb-2">
-                    {% for block in settings.navigation.NavigationSettings.main_menu %}
+                    {% for block in settings.navigation.NavigationSettings.footer_menu %}
                         {% if block.block_type == "page_link" %}
                             <li class="list-inline-item"><a href="{% pageurl block.value.page %}">{{ block.value.page.title }}</a></li>
                         {% elif block.block_type == "external_link" %}
