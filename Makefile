@@ -3,7 +3,7 @@
 CMD:=
 PYMODULE:=sowncms
 MANAGEPY:=$(CMD) ./$(PYMODULE)/manage.py
-APPS:=sowncms core navigation pages
+APPS:=sowncms core pages
 
 all: lint check
 

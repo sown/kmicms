@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                 <ul class="list-inline mb-2">
-                    {% for block in settings.navigation.NavigationSettings.footer_menu %}
+                    {% for block in settings.core.SiteSettings.footer_menu %}
                         {% if block.block_type == "page_link" %}
                             <li class="list-inline-item"><a href="{% pageurl block.value.page %}">{{ block.value.page.title }}</a></li>
                         {% elif block.block_type == "external_link" %}
@@ -17,7 +17,7 @@
                         {% endif %}
                     {% endfor %}
                 </ul>
-                <p class="text-muted small mb-4 mb-lg-0">&copy; {{ current_site.site_name }} 2007 - {% now "Y" %}. All Rights Reserved.</p>
+                <p class="text-muted small mb-4 mb-lg-0">&copy; {{ settings.core.SiteSettings.title }} {{ settings.core.SiteSettings.copyright_start_year }} - {% now "Y" %}. All Rights Reserved.</p>
             </div>
             <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                 <ul class="list-inline mb-0">

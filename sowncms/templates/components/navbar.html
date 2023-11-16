@@ -11,7 +11,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        {% for block in settings.navigation.NavigationSettings.main_menu %}
+        {% for block in settings.core.SiteSettings.main_menu %}
           <li class="nav-item">
             {% if block.block_type == "page_link" %}
               <a class="nav-link" href="{% pageurl block.value.page %}">{{ block.value.page.title }}</a>

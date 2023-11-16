@@ -91,7 +91,6 @@ SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 
 INSTALLED_APPS = [
     "core",
-    "navigation",
     "pages.contact",
     "pages.home",
     "pages.standard_page",
