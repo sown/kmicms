@@ -1,5 +1,6 @@
 from wagtail import blocks
 
+
 class ExternalNavLinkBlock(blocks.StructBlock):
     label = blocks.CharBlock(label="Label", max_length=55)
     url = blocks.URLBlock(label="URL")

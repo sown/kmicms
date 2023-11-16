@@ -6,7 +6,7 @@ CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
         "LOCATION": os.environ.get('REDIS_URL'),
-    }
+    },
 }
 
 CSRF_TRUSTED_ORIGINS = ["http://suws.localhost:8000", "http://sown.localhost:8000"]

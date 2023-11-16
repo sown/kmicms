@@ -157,7 +157,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'wagtail.contrib.settings.context_processors.settings'
+                'wagtail.contrib.settings.context_processors.settings',
             ],
         },
     },
@@ -228,7 +228,7 @@ MEDIA_URL = "/media/"
 WAGTAILSEARCH_BACKENDS = {
     "default": {
         "BACKEND": "wagtail.search.backends.database",
-    }
+    },
 }
 
 
@@ -236,9 +236,24 @@ WAGTAILADMIN_RICH_TEXT_EDITORS = {
     'all-but-headings': {
         'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea',
         'OPTIONS': {
-            'features': ['bold', 'italic', 'link', 'document-link', 'ol', 'ul', 'hr', 'code', 'superscript', 'subscript', 'strikethrough', 'blockquote', 'image', 'embed']
-        }
-    }
+            'features': [
+                'bold',
+                'italic',
+                'link',
+                'document-link',
+                'ol',
+                'ul',
+                'hr',
+                'code',
+                'superscript',
+                'subscript',
+                'strikethrough',
+                'blockquote',
+                'image',
+                'embed',
+            ],
+        },
+    },
 }
 
 # Brand Settings

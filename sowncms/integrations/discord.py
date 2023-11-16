@@ -17,10 +17,10 @@ def submit_discord_webhook_for_form(webhook: str, content: str, form_submission:
                 "fields": [
                     {"name": fields.get(key, key), "value": str(value), "inline": True}
                     for key, value in form_submission.get_data().items()
-                ]
+                ],
             },
         ],
     }
 
-    resp = requests.post(webhook, json=payload)
+    resp = requests.post(webhook, json=payload)  # noqa: S113
     resp.raise_for_status()

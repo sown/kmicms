@@ -54,8 +54,6 @@ django==4.2.7
     #   django-filter
     #   django-modelcluster
     #   django-permissionedforms
-    #   django-stubs
-    #   django-stubs-ext
     #   django-taggit
     #   django-treebeard
     #   djangorestframework
@@ -78,8 +76,6 @@ django-filter==23.3
     # via
     #   -r requirements.txt
     #   wagtail
-django-filter-stubs==0.1.3
-    # via -r requirements-dev.in
 django-libsass==0.9
     # via -r requirements.txt
 django-modelcluster==6.1
@@ -90,13 +86,6 @@ django-permissionedforms==0.1
     # via
     #   -r requirements.txt
     #   wagtail
-django-stubs[compatible-mypy]==4.2.6
-    # via
-    #   -r requirements-dev.in
-    #   django-filter-stubs
-    #   djangorestframework-stubs
-django-stubs-ext==4.2.5
-    # via django-stubs
 django-taggit==4.0.0
     # via
     #   -r requirements.txt
@@ -109,8 +98,6 @@ djangorestframework==3.14.0
     # via
     #   -r requirements.txt
     #   wagtail
-djangorestframework-stubs==3.14.4
-    # via django-filter-stubs
 draftjs-exporter==2.1.7
     # via
     #   -r requirements.txt
@@ -135,8 +122,6 @@ idna==3.4
     #   requests
 iniconfig==2.0.0
     # via pytest
-isort==5.12.0
-    # via -r requirements-dev.in
 l18n==2021.3
     # via
     #   -r requirements.txt
@@ -145,14 +130,6 @@ libsass==0.22.0
     # via
     #   -r requirements.txt
     #   django-libsass
-mypy==1.6.1
-    # via
-    #   -r requirements-dev.in
-    #   django-filter-stubs
-    #   django-stubs
-    #   djangorestframework-stubs
-mypy-extensions==1.0.0
-    # via mypy
 openpyxl==3.1.2
     # via
     #   -r requirements.txt
@@ -218,7 +195,6 @@ redis==5.0.1
 requests==2.31.0
     # via
     #   -r requirements.txt
-    #   djangorestframework-stubs
     #   wagtail
 rjsmin==1.2.1
     # via
@@ -244,22 +220,9 @@ telepath==0.3.1
     # via
     #   -r requirements.txt
     #   wagtail
-types-pytz==2023.3.1.1
-    # via django-stubs
-types-pyyaml==6.0.12.12
-    # via
-    #   django-stubs
-    #   djangorestframework-stubs
-types-requests==2.31.0.10
-    # via djangorestframework-stubs
 typing-extensions==4.8.0
     # via
     #   -r requirements.txt
-    #   django-filter-stubs
-    #   django-stubs
-    #   django-stubs-ext
-    #   djangorestframework-stubs
-    #   mypy
     #   psycopg
     #   psycopg-pool
     #   pydantic
@@ -268,7 +231,6 @@ urllib3==2.0.7
     # via
     #   -r requirements.txt
     #   requests
-    #   types-requests
 wagtail==5.2
     # via -r requirements.txt
 webencodings==0.5.1

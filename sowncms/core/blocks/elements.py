@@ -1,5 +1,6 @@
 from wagtail import blocks
 
+
 class HeadingBlock(blocks.StructBlock):
 
     size = blocks.ChoiceBlock([("h2", "Heading 2"), ("h3", "Heading 3"), ("h4", "Heading 4")])

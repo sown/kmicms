@@ -5,11 +5,6 @@ pip-tools
 django-debug-toolbar
 
 ruff
-isort
 pytest
 pytest-cov
 pytest-django
-
-mypy
-django-stubs[compatible-mypy]
-django-filter-stubs

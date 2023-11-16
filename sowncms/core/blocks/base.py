@@ -1,7 +1,8 @@
 from wagtail import blocks
 
 from .components import MastheadBlock, ShowcaseBlock
-from .elements import HeadingBlock, AlertBlock
+from .elements import AlertBlock, HeadingBlock
+
 
 class StoryBlock(blocks.StreamBlock):
 

@@ -1,3 +1,5 @@
+from typing import Any
+
 from django.db import models
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
@@ -29,10 +31,10 @@ class AbstractDiscordFormPage(FormMixin, Page):
         MultiFieldPanel([
             FieldPanel("discord_message_content"),
             FieldPanel("discord_webhook"),
-        ], heading="Discord Settings")
+        ], heading="Discord Settings"),
     ]
 
-    def process_form_submission(self, form):
+    def process_form_submission(self, form: Any) -> Any:
         submission = super().process_form_submission(form)
         submit_discord_webhook_for_form(
             self.discord_webhook,

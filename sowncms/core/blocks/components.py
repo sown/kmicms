@@ -3,6 +3,7 @@ from wagtail.images.blocks import ImageChooserBlock
 
 from .elements import CallToActionBlock
 
+
 class MastheadBlock(blocks.StructBlock):
     image = ImageChooserBlock(help_text="An image with dimensions 1900x1216 works best")
     content = blocks.RichTextBlock()
