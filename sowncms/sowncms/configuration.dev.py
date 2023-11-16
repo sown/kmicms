@@ -5,6 +5,8 @@
 
 ALLOWED_HOSTS = ["localhost"]
 
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8000"]
+
 DATABASE = {
     "ENGINE": "django.db.backends.sqlite3",
     "NAME": "db.sqlite3",
