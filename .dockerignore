@@ -1,0 +1,10 @@
+media/
+static/
+venv/
+.env
+.gitignore
+.gitmodules
+configuration.py
+docker-compose.yml
+db.sqlite
+db.sqlite3

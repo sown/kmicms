@@ -1,0 +1,62 @@
+version: "3.7"
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: ./etc/docker/nginx/Dockerfile
+    volumes:
+      - staticfiles:/app/static
+      - mediafiles:/app/media
+    ports:
+      - 8000:80
+    depends_on:
+      - web
+
+  web:
+    build:
+      context: .
+      dockerfile: ./etc/docker/web/Dockerfile
+    image: sowncms_web
+    command: /start
+    volumes:
+      - staticfiles:/app/static
+      - mediafiles:/app/media
+    env_file:
+      - .env
+    environment:
+      - REDIS_URL=redis://cache:6379
+      - SQL_DATABASE=wagtail
+      - SQL_USER=wagtail
+      - SQL_PASSWORD=wagtail
+      - SQL_HOST=db
+      - SQL_PORT=5432
+    depends_on:
+      - cache
+      - db
+
+  cache:
+    image: redis:7.2-alpine
+    restart: always
+    expose:
+      - 6379
+    volumes: 
+      - redis_data:/data
+
+  db:
+    image: postgres:16.1-alpine
+    restart: always
+    expose:
+      - 5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=wagtail
+      - POSTGRES_USER=wagtail
+      - POSTGRES_PASSWORD=wagtail
+
+volumes:
+  postgres_data:
+  redis_data:
+  staticfiles:
+  mediafiles:
