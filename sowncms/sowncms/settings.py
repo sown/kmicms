@@ -61,6 +61,10 @@ LANGUAGE_CODE = getattr(configuration, "LANGUAGE_CODE", "en-us")
 TIME_ZONE = getattr(configuration, "TIME_ZONE", "UTC")
 WAGTAIL_SITE_NAME = getattr(configuration, "WAGTAIL_SITE_NAME", "SUWS / SOWN")
 
+
+if hasattr(configuration, "CACHES"):
+    CACHES = getattr(configuration, "CACHES")
+
 #
 # Database
 #
