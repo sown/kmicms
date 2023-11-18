@@ -8,10 +8,20 @@ services:
     volumes:
       - staticfiles:/app/static
       - mediafiles:/app/media
-    ports:
-      - 8000:80
     depends_on:
       - web
+    networks:
+      - traefik
+      - default
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.wagtail.rule=Host(`suws-web.containers-1.sown.org.uk`)"
+      - "traefik.http.routers.wagtail.rule=Host(`sown-web.containers-1.sown.org.uk`)"
+      - "traefik.http.routers.wagtail.tls=true"
+      - "traefik.http.routers.wagtail.tls.certresolver=le"
+      - "traefik.http.services.wagtail.loadbalancer.server.port=80"
+      - "traefik.http.services.wagtail.loadbalancer.server.scheme=http"
+      - "traefik.http.services.wagtail.loadbalancer.serverstransport=https_ignore@file"
 
   web:
     build:
@@ -60,3 +70,7 @@ volumes:
   redis_data:
   staticfiles:
   mediafiles:
+
+networks:
+  traefik:
+    external: true

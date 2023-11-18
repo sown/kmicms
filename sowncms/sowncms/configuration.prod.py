@@ -9,7 +9,7 @@ CACHES = {
     },
 }
 
-CSRF_TRUSTED_ORIGINS = ["http://suws.localhost:8000", "http://sown.localhost:8000"]
+CSRF_TRUSTED_ORIGINS = ["https://suws-web.containers-1.sown.org.uk", "https://sown-web.containers-1.sown.org.uk"]
 
 DATABASE = {
     "ENGINE": 'django.db.backends.postgresql',
@@ -28,4 +28,4 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 TIME_ZONE = "Europe/London"
 
-WAGTAILADMIN_BASE_URL = "http://localhost:8000"
+WAGTAILADMIN_BASE_URL = "https://sown-web.containers-1.sown.org.uk"
