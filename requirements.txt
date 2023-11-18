@@ -16,10 +16,17 @@ beautifulsoup4==4.11.2
     # via wagtail
 certifi==2023.7.22
     # via requests
+cffi==1.16.0
+    # via cryptography
 charset-normalizer==3.3.2
     # via requests
 crispy-bootstrap5==2023.10
     # via -r requirements.in
+cryptography==41.0.5
+    # via
+    #   josepy
+    #   mozilla-django-oidc
+    #   pyopenssl
 defusedxml==0.7.1
     # via willow
 django==4.2.7
@@ -34,6 +41,7 @@ django==4.2.7
     #   django-taggit
     #   django-treebeard
     #   djangorestframework
+    #   mozilla-django-oidc
     #   wagtail
 django-appconf==1.0.5
     # via django-compressor
@@ -71,10 +79,14 @@ html5lib==1.1
     # via wagtail
 idna==3.4
     # via requests
+josepy==1.14.0
+    # via mozilla-django-oidc
 l18n==2021.3
     # via wagtail
 libsass==0.22.0
     # via django-libsass
+mozilla-django-oidc==3.0.0
+    # via -r requirements.in
 openpyxl==3.1.2
     # via wagtail
 packaging==23.2
@@ -91,10 +103,14 @@ psycopg-binary==3.1.12
     # via psycopg
 psycopg-pool==3.2.0
     # via psycopg
+pycparser==2.21
+    # via cffi
 pydantic==2.4.2
     # via -r requirements.in
 pydantic-core==2.10.1
     # via pydantic
+pyopenssl==23.3.0
+    # via josepy
 pytz==2023.3.post1
     # via
     #   django-modelcluster
@@ -107,6 +123,7 @@ redis==5.0.1
 requests==2.31.0
     # via
     #   -r requirements.in
+    #   mozilla-django-oidc
     #   wagtail
 rjsmin==1.2.1
     # via django-compressor

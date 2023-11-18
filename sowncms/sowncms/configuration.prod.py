@@ -26,6 +26,10 @@ EMAIL = {
 
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
+OIDC_ENABLED = True
+OIDC_RP_CLIENT_ID = os.environ.get('OIDC_RP_CLIENT_ID')
+OIDC_RP_CLIENT_SECRET = os.environ.get('OIDC_RP_CLIENT_SECRET')
+
 TIME_ZONE = "Europe/London"
 
 WAGTAILADMIN_BASE_URL = "https://sown-web.containers-1.sown.org.uk"

@@ -5,6 +5,7 @@ django_compressor
 django-crispy-forms
 django-libsass
 crispy-bootstrap5
+mozilla-django-oidc
 
 pydantic>=2.4,<3
 requests

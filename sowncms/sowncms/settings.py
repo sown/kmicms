@@ -117,6 +117,7 @@ INSTALLED_APPS = [
     "taggit",
     "django.contrib.admin",
     "django.contrib.auth",
+    'mozilla_django_oidc',
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.sitemaps",
@@ -133,6 +134,9 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+
+    # Make sure to check for deauthentication during a session:
+    'mozilla_django_oidc.middleware.SessionRefresh',
 ]
 
 if DEBUG:
@@ -182,6 +186,43 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'core.oidc.SOWNOIDCAuthenticationBackend',
+)
+
+# Mozilla OpenID Connect/Auth0 configuration
+
+USE_CONVENTIONAL_AUTH = getattr(configuration, "OIDC_ENABLED", False)
+
+# disable user creating during authentication
+OIDC_CREATE_USER = True
+
+# How frequently do we check with the provider that the user still exists.
+OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS = 15 * 60
+
+OIDC_RP_SIGN_ALGO = "RS256"
+OIDC_RP_CLIENT_ID = getattr(configuration, "OIDC_RP_CLIENT_ID")
+OIDC_RP_CLIENT_SECRET = getattr(configuration, "OIDC_RP_CLIENT_SECRET")
+
+OIDC_OP_AUTHORIZATION_ENDPOINT = "https://sso.sown.org.uk/application/o/authorize/"
+OIDC_OP_TOKEN_ENDPOINT = "https://sso.sown.org.uk/application/o/token/"  # noqa: S105
+OIDC_OP_USER_ENDPOINT = "https://sso.sown.org.uk/application/o/userinfo/"
+OIDC_OP_DOMAIN = "sso.sown.org.uk"
+OIDC_OP_JWKS_ENDPOINT = "https://sso.sown.org.uk/application/o/wagtail/jwks/"
+OIDC_RP_SCOPES = "openid email profile"
+
+LOGIN_REDIRECT_URL = "/admin/"
+LOGOUT_REDIRECT_URL = "/"
+
+# https://docs.wagtail.org/en/v5.2.1/reference/settings.html#wagtail-password-management-enabled
+# Don't let users change or reset their password
+WAGTAIL_PASSWORD_MANAGEMENT_ENABLED = False
+WAGTAIL_PASSWORD_RESET_ENABLED = False
+
+# Don't require a password when creating a user,
+# and blank password means cannot log in unless SSO
+WAGTAILUSERS_PASSWORD_ENABLED = False
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

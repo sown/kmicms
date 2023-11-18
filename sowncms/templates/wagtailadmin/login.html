@@ -1,0 +1,21 @@
+{% extends "wagtailadmin/login.html" %}
+{% load i18n auth_tags %}
+
+{% block login_form %}
+    {% use_conventional_auth as conventional_auth_enabled %}
+    {% if conventional_auth_enabled %}
+        {{ block.super }}
+    {% endif %}
+{% endblock %}
+
+{% block submit_buttons %}
+    {% use_conventional_auth as conventional_auth_enabled %}
+    {% if conventional_auth_enabled %}
+        {{ block.super }}
+    {% else %}
+        <a href="{% url 'oidc_authentication_init' %}" class="button button-longrunning" data-clicked-text="{% trans 'Signing in…' %}">
+            <span class="icon icon-spinner"></span>
+            <em>{% trans 'Sign in with SOWN SSO' %}</em>
+        </a>
+    {% endif %}
+{% endblock %}
