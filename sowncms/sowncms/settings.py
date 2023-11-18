@@ -193,7 +193,7 @@ AUTHENTICATION_BACKENDS = (
 
 # Mozilla OpenID Connect/Auth0 configuration
 
-USE_CONVENTIONAL_AUTH = getattr(configuration, "OIDC_ENABLED", False)
+USE_CONVENTIONAL_AUTH = not getattr(configuration, "OIDC_ENABLED", False)
 
 # disable user creating during authentication
 OIDC_CREATE_USER = True
