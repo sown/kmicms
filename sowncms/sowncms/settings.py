@@ -224,6 +224,9 @@ WAGTAIL_PASSWORD_RESET_ENABLED = False
 # and blank password means cannot log in unless SSO
 WAGTAILUSERS_PASSWORD_ENABLED = False
 
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
