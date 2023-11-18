@@ -1,16 +1,19 @@
 from django.conf import settings
 from django.core.validators import MinValueValidator
 from django.db import models
-from wagtail.admin.panels import FieldPanel, ObjectList, TabbedInterface
+from modelcluster.fields import ParentalKey
+from modelcluster.models import ClusterableModel
+from wagtail.admin.panels import FieldPanel, InlinePanel, ObjectList, TabbedInterface
 from wagtail.contrib.settings.models import BaseSiteSetting, register_setting
 from wagtail.fields import StreamField
+from wagtail.models import Orderable
 
 from core.blocks.nav import FooterMenuBlock, MainMenuBlock
-from core.utils import last_year, max_value_current_year
+from core.utils import get_social_media_service_choices, get_social_media_services, last_year, max_value_current_year
 
 
 @register_setting
-class SiteSettings(BaseSiteSetting):
+class SiteSettings(ClusterableModel, BaseSiteSetting):
 
     title = models.CharField(max_length=63, blank=True, help_text="This is used in the footer")
     brand = models.CharField(max_length=15, choices=settings.AVAILABLE_BRANDS, default="sown")
@@ -41,8 +44,7 @@ class SiteSettings(BaseSiteSetting):
     ]
 
     social_media_panels = [
-        FieldPanel('discord_invite'),
-        FieldPanel('github_org'),
+        InlinePanel('social_media_accounts', heading="Social Media Accounts"),
     ]
 
     edit_handler = TabbedInterface([
@@ -50,3 +52,24 @@ class SiteSettings(BaseSiteSetting):
         ObjectList(navigation_panels, heading='Navigation'),
         ObjectList(social_media_panels, heading='Social Media'),
     ])
+
+
+class SocialMediaAccount(Orderable):
+
+    site_settings = ParentalKey(SiteSettings, on_delete=models.CASCADE, related_name='social_media_accounts')
+    service = models.CharField(max_length=20, choices=get_social_media_service_choices())
+    url = models.URLField()
+
+    @property
+    def icon(self) -> str:
+        services = get_social_media_services()
+        if self.service in services:
+            return services[self.service].icon
+        return ''
+
+    @property
+    def service_name(self) -> str:
+        services = get_social_media_services()
+        if self.service in services:
+            return services[self.service].name
+        return ''
