@@ -21,3 +21,6 @@ EMAIL = {
 }
 
 WAGTAILADMIN_BASE_URL = "http://localhost:8000"
+
+OIDC_RP_CLIENT_ID = ''
+OIDC_RP_CLIENT_SECRET = ''
