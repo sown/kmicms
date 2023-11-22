@@ -171,6 +171,7 @@ TEMPLATES = [
 WSGI_APPLICATION = "sowncms.wsgi.application"
 
 AUTH_USER_MODEL = 'accounts.User'
+WAGTAILIMAGES_IMAGE_MODEL = 'core.CustomImage'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
