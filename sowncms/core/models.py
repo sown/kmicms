@@ -26,9 +26,6 @@ class SiteSettings(ClusterableModel, BaseSiteSetting):
     main_menu = StreamField(MainMenuBlock(), blank=True, use_json_field=True)
     footer_menu = StreamField(FooterMenuBlock(), blank=True, use_json_field=True)
 
-    discord_invite = models.URLField(blank=True)
-    github_org = models.CharField(blank=True, max_length=63, verbose_name="GitHub Username / Org Name")
-
     class Meta:
         verbose_name = "Site Settings"
 
