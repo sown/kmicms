@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.models import Group, Permission
 from mozilla_django_oidc.auth import OIDCAuthenticationBackend
 
@@ -27,11 +28,17 @@ class SOWNOIDCAuthenticationBackend(OIDCAuthenticationBackend):
             user.first_name = name_parts.pop(0)
             user.last_name = ' '.join(name_parts)
 
+        sso_groups = claims.get('groups', [])
+        is_staff = settings.SSO_STAFF_GROUP_NAME in sso_groups
+        is_superuser = settings.SSO_SUPERUSER_GROUP_NAME in sso_groups
+
         user.email = claims.get('email')
+        user.is_staff = is_staff
+        user.is_superuser = is_superuser
 
         user.save()
 
-        if 'Wagtail Staff' in claims.get('groups', []):
+        if is_staff:
             user.groups.add(self._get_staff_group())
         else:
             user.groups.clear()
