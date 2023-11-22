@@ -94,6 +94,7 @@ INSTALLED_APPS = [
     "pages.contact",
     "pages.home",
     "pages.standard_page",
+    "people",
 
     # 3rd party
     "compressor",
