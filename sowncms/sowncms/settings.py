@@ -90,6 +90,7 @@ SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 
 
 INSTALLED_APPS = [
+    "accounts",
     "core",
     "pages.contact",
     "pages.home",
@@ -168,6 +169,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "sowncms.wsgi.application"
+
+AUTH_USER_MODEL = 'accounts.User'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

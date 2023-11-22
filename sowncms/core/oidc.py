@@ -1,5 +1,7 @@
-from django.contrib.auth.models import Group, Permission, User
+from django.contrib.auth.models import Group, Permission
 from mozilla_django_oidc.auth import OIDCAuthenticationBackend
+
+from accounts.models import User
 
 
 class SOWNOIDCAuthenticationBackend(OIDCAuthenticationBackend):
