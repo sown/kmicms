@@ -192,7 +192,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
-    'core.oidc.SOWNOIDCAuthenticationBackend',
+    'accounts.oidc.SOWNOIDCAuthenticationBackend',
 )
 
 # Mozilla OpenID Connect/Auth0 configuration
