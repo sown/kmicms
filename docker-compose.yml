@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: ./etc/docker/nginx/Dockerfile
+    restart: always
     volumes:
       - staticfiles:/app/static
       - mediafiles:/app/media
@@ -27,6 +28,7 @@ services:
       context: .
       dockerfile: ./etc/docker/web/Dockerfile
     image: sowncms_web
+    restart: always
     command: /start
     volumes:
       - staticfiles:/app/static
