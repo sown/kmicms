@@ -1,5 +1,5 @@
-sowncms/sowncms/configuration.py
-sowncms/db.sqlite
+kmicms/kmicms/configuration.py
+kmicms/db.sqlite
 static/CACHE/
 
 ### Django ###

@@ -1,9 +1,9 @@
 .PHONY: all clean lint
 
 CMD:=
-PYMODULE:=sowncms
+PYMODULE:=kmicms
 MANAGEPY:=$(CMD) ./$(PYMODULE)/manage.py
-APPS:=sowncms core pages
+APPS:=kmicms core pages
 
 all: lint check
 

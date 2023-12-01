@@ -24,11 +24,11 @@ if parse_version(platform.python_version()) < parse_version("3.9.0"):  # pragma:
 
 # Import configuration parameters
 try:
-    from sowncms import configuration
+    from kmicms import configuration
 except ImportError as e:  # pragma: nocover
     if getattr(e, "name") == "configuration":
         raise ImproperlyConfigured(
-            "Configuration file is not present. Please define sowncms/sowncms/configuration.py per the documentation.",  # noqa: E501
+            "Configuration file is not present. Please define kmicms/kmicms/configuration.py per the documentation.",  # noqa: E501
         ) from None
     raise
 
@@ -59,7 +59,7 @@ DEBUG = getattr(configuration, "DEBUG", False)
 EMAIL = getattr(configuration, "EMAIL", {})
 LANGUAGE_CODE = getattr(configuration, "LANGUAGE_CODE", "en-us")
 TIME_ZONE = getattr(configuration, "TIME_ZONE", "UTC")
-WAGTAIL_SITE_NAME = getattr(configuration, "WAGTAIL_SITE_NAME", "SUWS / SOWN")
+WAGTAIL_SITE_NAME = getattr(configuration, "WAGTAIL_SITE_NAME", "KMI.CMS")
 
 
 if hasattr(configuration, "CACHES"):
@@ -95,7 +95,6 @@ INSTALLED_APPS = [
     "pages.contact",
     "pages.home",
     "pages.standard_page",
-    "people",
 
     # 3rd party
     "compressor",
@@ -147,7 +146,7 @@ if DEBUG:
 
     INTERNAL_IPS = ["127.0.0.1"]
 
-ROOT_URLCONF = "sowncms.urls"
+ROOT_URLCONF = "kmicms.urls"
 
 TEMPLATES = [
     {
@@ -168,7 +167,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "sowncms.wsgi.application"
+WSGI_APPLICATION = "kmicms.wsgi.application"
 
 AUTH_USER_MODEL = 'accounts.User'
 WAGTAILIMAGES_IMAGE_MODEL = 'core.CustomImage'

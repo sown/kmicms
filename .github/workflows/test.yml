@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt -r requirements-dev.txt
       - name: Use the dev configuration
-        run: cp sowncms/sowncms/configuration.dev.py sowncms/sowncms/configuration.py
+        run: cp kmicms/kmicms/configuration.dev.py kmicms/kmicms/configuration.py
       - name: Lint
         run: make lint
       - name: Django Static Checks

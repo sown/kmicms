@@ -36,7 +36,7 @@ RUN mkdir /app/static
 RUN mkdir /app/media
 
 COPY . .
-COPY ./sowncms/sowncms/configuration.prod.py /app/sowncms/sowncms/configuration.py
+COPY ./kmicms/kmicms/configuration.prod.py /app/kmicms/kmicms/configuration.py
 
 RUN chown -R wagtail:wagtail /app
 

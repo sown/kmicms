@@ -1,4 +1,4 @@
-# SUWS Wagtail CMS
+# SUWS / SOWN Wagtail CMS
 
 ## Development
 
@@ -8,9 +8,9 @@ The website is currently intended to be developed outside of docker, using a SQL
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements-dev.txt
-cp sowncms/sowncms/configuration.dev.py sowncms/sowncms/configuration.py
+cp kmicms/kmicms/configuration.dev.py kmicms/kmicms/configuration.py
 
-cd sowncms
+cd kmicms
 ./manage.py migrate
 ./manage.py runserver
 ```
