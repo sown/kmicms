@@ -208,7 +208,7 @@ OIDC_OP_AUTHORIZATION_ENDPOINT = "https://sso.sown.org.uk/application/o/authoriz
 OIDC_OP_TOKEN_ENDPOINT = "https://sso.sown.org.uk/application/o/token/"  # noqa: S105
 OIDC_OP_USER_ENDPOINT = "https://sso.sown.org.uk/application/o/userinfo/"
 OIDC_OP_DOMAIN = "sso.sown.org.uk"
-OIDC_OP_JWKS_ENDPOINT = "https://sso.sown.org.uk/application/o/wagtail/jwks/"
+OIDC_OP_JWKS_ENDPOINT = "https://sso.sown.org.uk/application/o/kmicms-staging/jwks/"
 OIDC_RP_SCOPES = "openid email profile"
 
 SSO_STAFF_GROUP_NAME = getattr(configuration, "SSO_STAFF_GROUP_NAME", "kmicms:staff")
