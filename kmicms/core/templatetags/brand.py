@@ -8,11 +8,12 @@ from core.models import SiteSettings
 
 register = template.Library()
 
+
 class BrandStaticNode(StaticNode):
     def url(self, context: Any) -> str:
         path = self.path.resolve(context)
         site_settings = SiteSettings.for_request(context["request"])
-        path = urljoin(f'brands/{site_settings.brand}/', path)
+        path = urljoin(f"brands/{site_settings.brand}/", path)
         return self.handle_simple(path)
 
 

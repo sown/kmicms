@@ -5,14 +5,12 @@ from .elements import AlertBlock, HeadingBlock
 
 
 class StoryBlock(blocks.StreamBlock):
-
     heading = HeadingBlock()
-    rich_text = blocks.RichTextBlock(editor='all-but-headings')
+    rich_text = blocks.RichTextBlock(editor="all-but-headings")
     alert = AlertBlock()
 
 
 class ContainerBlock(blocks.StructBlock):
-
     content = StoryBlock()
 
     class Meta:
@@ -21,7 +19,6 @@ class ContainerBlock(blocks.StructBlock):
 
 
 class TwoColumnBlock(blocks.StructBlock):
-
     left_content = StoryBlock()
     right_content = StoryBlock()
 
@@ -30,9 +27,7 @@ class TwoColumnBlock(blocks.StructBlock):
         template = "core/blocks/layout/columns-6-6.html"
 
 
-
 class BodyBlock(blocks.StreamBlock):
-
     masthead = MastheadBlock()
     showcase = ShowcaseBlock()
     container = ContainerBlock()

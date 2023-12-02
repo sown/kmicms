@@ -11,7 +11,6 @@ class ExternalNavLinkBlock(blocks.StructBlock):
 
 
 class InternalPageBlock(blocks.StructBlock):
-
     page = blocks.PageChooserBlock()
 
     class Meta:
@@ -20,7 +19,6 @@ class InternalPageBlock(blocks.StructBlock):
 
 
 class MainMenuBlock(blocks.StreamBlock):
-
     page_link = InternalPageBlock()
     external_link = ExternalNavLinkBlock()
 
@@ -30,7 +28,6 @@ class MainMenuBlock(blocks.StreamBlock):
 
 
 class FooterMenuBlock(blocks.StreamBlock):
-
     page_link = InternalPageBlock()
     external_link = ExternalNavLinkBlock()
 

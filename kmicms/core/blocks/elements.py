@@ -2,7 +2,6 @@ from wagtail import blocks
 
 
 class HeadingBlock(blocks.StructBlock):
-
     size = blocks.ChoiceBlock([("h2", "Heading 2"), ("h3", "Heading 3"), ("h4", "Heading 4")])
     text = blocks.TextBlock()
 
@@ -12,18 +11,19 @@ class HeadingBlock(blocks.StructBlock):
 
 
 class AlertBlock(blocks.StructBlock):
-
     heading = blocks.CharBlock(required=False)
-    alert_type = blocks.ChoiceBlock(choices=[
-        ('primary', 'Primary'),
-        ('secondary', 'Secondary'),
-        ('success', 'Success'),
-        ('danger', 'Danger'),
-        ('warning', 'Warning'),
-        ('info', 'Info'),
-        ('light', 'Light'),
-        ('dark', 'Dark'),
-    ])
+    alert_type = blocks.ChoiceBlock(
+        choices=[
+            ("primary", "Primary"),
+            ("secondary", "Secondary"),
+            ("success", "Success"),
+            ("danger", "Danger"),
+            ("warning", "Warning"),
+            ("info", "Info"),
+            ("light", "Light"),
+            ("dark", "Dark"),
+        ]
+    )
     content = blocks.TextBlock()
 
     class Meta:
@@ -31,19 +31,20 @@ class AlertBlock(blocks.StructBlock):
 
 
 class CallToActionBlock(blocks.StructBlock):
-
     label = blocks.CharBlock()
     link = blocks.PageChooserBlock()
-    style = blocks.ChoiceBlock(choices=[
-        ('primary', 'Primary'),
-        ('secondary', 'Secondary'),
-        ('success', 'Success'),
-        ('danger', 'Danger'),
-        ('warning', 'Warning'),
-        ('info', 'Info'),
-        ('light', 'Light'),
-        ('dark', 'Dark'),
-    ])
+    style = blocks.ChoiceBlock(
+        choices=[
+            ("primary", "Primary"),
+            ("secondary", "Secondary"),
+            ("success", "Success"),
+            ("danger", "Danger"),
+            ("warning", "Warning"),
+            ("info", "Info"),
+            ("light", "Light"),
+            ("dark", "Dark"),
+        ]
+    )
 
     class Meta:
         template = "core/blocks/elements/call-to-action.html"

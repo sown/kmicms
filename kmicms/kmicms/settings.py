@@ -51,9 +51,7 @@ ADMINS = getattr(configuration, "ADMINS", [])
 
 BASE_PATH = getattr(configuration, "BASE_PATH", "")
 if BASE_PATH:
-    BASE_PATH = (
-        BASE_PATH.strip("/") + "/"
-    )  # Enforce trailing slash only  # pragma: nocover
+    BASE_PATH = BASE_PATH.strip("/") + "/"  # Enforce trailing slash only  # pragma: nocover
 
 DEBUG = getattr(configuration, "DEBUG", False)
 EMAIL = getattr(configuration, "EMAIL", {})
@@ -95,12 +93,10 @@ INSTALLED_APPS = [
     "pages.contact",
     "pages.home",
     "pages.standard_page",
-
     # 3rd party
     "compressor",
     "crispy_forms",
     "crispy_bootstrap5",
-
     # Wagtail / Django
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -118,7 +114,7 @@ INSTALLED_APPS = [
     "taggit",
     "django.contrib.admin",
     "django.contrib.auth",
-    'mozilla_django_oidc',
+    "mozilla_django_oidc",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.sitemaps",
@@ -135,9 +131,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-
     # Make sure to check for deauthentication during a session:
-    'mozilla_django_oidc.middleware.SessionRefresh',
+    "mozilla_django_oidc.middleware.SessionRefresh",
 ]
 
 if DEBUG:
@@ -161,7 +156,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
-                'wagtail.contrib.settings.context_processors.settings',
+                "wagtail.contrib.settings.context_processors.settings",
             ],
         },
     },
@@ -169,8 +164,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "kmicms.wsgi.application"
 
-AUTH_USER_MODEL = 'accounts.User'
-WAGTAILIMAGES_IMAGE_MODEL = 'core.CustomImage'
+AUTH_USER_MODEL = "accounts.User"
+WAGTAILIMAGES_IMAGE_MODEL = "core.CustomImage"
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -191,8 +186,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'accounts.oidc.SOWNOIDCAuthenticationBackend',
+    "django.contrib.auth.backends.ModelBackend",
+    "accounts.oidc.SOWNOIDCAuthenticationBackend",
 )
 
 # Mozilla OpenID Connect/Auth0 configuration
@@ -216,8 +211,8 @@ OIDC_OP_DOMAIN = "sso.sown.org.uk"
 OIDC_OP_JWKS_ENDPOINT = "https://sso.sown.org.uk/application/o/wagtail/jwks/"
 OIDC_RP_SCOPES = "openid email profile"
 
-SSO_STAFF_GROUP_NAME = 'wagtail:staff'
-SSO_SUPERUSER_GROUP_NAME = 'wagtail:superuser'
+SSO_STAFF_GROUP_NAME = "wagtail:staff"
+SSO_SUPERUSER_GROUP_NAME = "wagtail:superuser"
 
 LOGIN_REDIRECT_URL = "/admin/"
 LOGOUT_REDIRECT_URL = "/"
@@ -232,7 +227,7 @@ WAGTAIL_PASSWORD_RESET_ENABLED = False
 WAGTAILUSERS_PASSWORD_ENABLED = False
 
 USE_X_FORWARDED_HOST = True
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -283,24 +278,24 @@ WAGTAILSEARCH_BACKENDS = {
 
 
 WAGTAILADMIN_RICH_TEXT_EDITORS = {
-    'all-but-headings': {
-        'WIDGET': 'wagtail.admin.rich_text.DraftailRichTextArea',
-        'OPTIONS': {
-            'features': [
-                'bold',
-                'italic',
-                'link',
-                'document-link',
-                'ol',
-                'ul',
-                'hr',
-                'code',
-                'superscript',
-                'subscript',
-                'strikethrough',
-                'blockquote',
-                'image',
-                'embed',
+    "all-but-headings": {
+        "WIDGET": "wagtail.admin.rich_text.DraftailRichTextArea",
+        "OPTIONS": {
+            "features": [
+                "bold",
+                "italic",
+                "link",
+                "document-link",
+                "ol",
+                "ul",
+                "hr",
+                "code",
+                "superscript",
+                "subscript",
+                "strikethrough",
+                "blockquote",
+                "image",
+                "embed",
             ],
         },
     },

@@ -10,11 +10,11 @@ from core import views as search_views
 
 urlpatterns = [
     path("admin/", include(wagtailadmin_urls)),
-    path('auth/', include('mozilla_django_oidc.urls')),
+    path("auth/", include("mozilla_django_oidc.urls")),
     path("django-admin/", admin.site.urls),
     path("documents/", include(wagtaildocs_urls)),
     path("search/", search_views.search, name="search"),
-    path('sitemap.xml', sitemap),
+    path("sitemap.xml", sitemap),
 ]
 
 

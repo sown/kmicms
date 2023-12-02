@@ -52,7 +52,9 @@ class Migration(migrations.Migration):
                 (
                     "created_at",
                     models.DateTimeField(
-                        auto_now_add=True, db_index=True, verbose_name="created at",
+                        auto_now_add=True,
+                        db_index=True,
+                        verbose_name="created at",
                     ),
                 ),
                 ("focal_point_x", models.PositiveIntegerField(blank=True, null=True)),
@@ -69,7 +71,10 @@ class Migration(migrations.Migration):
                 (
                     "file_hash",
                     models.CharField(
-                        blank=True, db_index=True, editable=False, max_length=40,
+                        blank=True,
+                        db_index=True,
+                        editable=False,
+                        max_length=40,
                     ),
                 ),
                 (
@@ -169,7 +174,8 @@ class Migration(migrations.Migration):
                                         (
                                             "label",
                                             wagtail.blocks.CharBlock(
-                                                label="Label", max_length=55,
+                                                label="Label",
+                                                max_length=55,
                                             ),
                                         ),
                                         ("url", wagtail.blocks.URLBlock(label="URL")),
@@ -198,7 +204,8 @@ class Migration(migrations.Migration):
                                         (
                                             "label",
                                             wagtail.blocks.CharBlock(
-                                                label="Label", max_length=55,
+                                                label="Label",
+                                                max_length=55,
                                             ),
                                         ),
                                         ("url", wagtail.blocks.URLBlock(label="URL")),
@@ -297,7 +304,10 @@ class Migration(migrations.Migration):
                 (
                     "focal_point_key",
                     models.CharField(
-                        blank=True, default="", editable=False, max_length=16,
+                        blank=True,
+                        default="",
+                        editable=False,
+                        max_length=16,
                     ),
                 ),
                 (

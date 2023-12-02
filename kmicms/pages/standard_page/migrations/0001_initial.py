@@ -88,13 +88,15 @@ class Migration(migrations.Migration):
                 (
                     "show_breadcrumbs",
                     models.BooleanField(
-                        default=True, help_text="Show breadcrumbs at top of page?",
+                        default=True,
+                        help_text="Show breadcrumbs at top of page?",
                     ),
                 ),
                 (
                     "show_title",
                     models.BooleanField(
-                        default=True, help_text="Show page title at top of page?",
+                        default=True,
+                        help_text="Show page title at top of page?",
                     ),
                 ),
             ],

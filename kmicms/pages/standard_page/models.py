@@ -8,7 +8,6 @@ from core.blocks import StoryBlock
 
 
 class StandardPage(Page):
-
     content = StreamField(StoryBlock(), use_json_field=True)
     show_breadcrumbs = models.BooleanField(help_text="Show breadcrumbs at top of page?", default=True)
     show_title = models.BooleanField(help_text="Show page title at top of page?", default=True)

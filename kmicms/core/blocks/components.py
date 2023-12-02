@@ -15,7 +15,7 @@ class MastheadBlock(blocks.StructBlock):
 
 
 class ShowcaseBlock(blocks.StructBlock):
-    direction = blocks.ChoiceBlock([('left', 'Image on Left'), ('right', 'Image on Right')])
+    direction = blocks.ChoiceBlock([("left", "Image on Left"), ("right", "Image on Right")])
     image = ImageChooserBlock()
     title = blocks.TextBlock()
     description = blocks.TextBlock()

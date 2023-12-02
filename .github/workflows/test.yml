@@ -31,6 +31,8 @@ jobs:
         run: pip install -r requirements.txt -r requirements-dev.txt
       - name: Use the dev configuration
         run: cp kmicms/kmicms/configuration.dev.py kmicms/kmicms/configuration.py
+      - name: Check Formatting
+        run: make format-check
       - name: Lint
         run: make lint
       - name: Django Static Checks

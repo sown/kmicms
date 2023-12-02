@@ -1,11 +1,17 @@
-.PHONY: all clean lint
+.PHONY: all check clean dev format format-check lint lint-fix
 
 CMD:=
 PYMODULE:=kmicms
 MANAGEPY:=$(CMD) ./$(PYMODULE)/manage.py
 APPS:=kmicms core pages
 
-all: lint check
+all: format lint check
+
+format:
+	$(CMD) ruff format $(PYMODULE)
+
+format-check:
+	$(CMD) ruff format --check $(PYMODULE)
 
 lint: 
 	$(CMD) ruff check $(PYMODULE)

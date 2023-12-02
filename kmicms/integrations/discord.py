@@ -3,11 +3,7 @@ from wagtail.contrib.forms.models import FormSubmission
 
 
 def submit_discord_webhook_for_form(webhook: str, content: str, form_submission: FormSubmission) -> None:
-
-    fields = {
-        field.clean_name: field.label
-        for field in form_submission.page.form_fields.all()
-    }
+    fields = {field.clean_name: field.label for field in form_submission.page.form_fields.all()}
 
     payload = {
         "content": content,

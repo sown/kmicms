@@ -12,11 +12,10 @@ from integrations.discord import submit_discord_webhook_for_form
 
 
 class FormField(AbstractFormField):
-    page = ParentalKey('ContactFormPage', on_delete=models.CASCADE, related_name='form_fields')
+    page = ParentalKey("ContactFormPage", on_delete=models.CASCADE, related_name="form_fields")
 
 
 class AbstractDiscordFormPage(FormMixin, Page):
-
     discord_message_content = models.TextField(
         default="A form has been submitted.",
         help_text="A message that should appear before the form submission data",
@@ -28,10 +27,13 @@ class AbstractDiscordFormPage(FormMixin, Page):
         abstract = True
 
     settings_panels = [
-        MultiFieldPanel([
-            FieldPanel("discord_message_content"),
-            FieldPanel("discord_webhook"),
-        ], heading="Discord Settings"),
+        MultiFieldPanel(
+            [
+                FieldPanel("discord_message_content"),
+                FieldPanel("discord_webhook"),
+            ],
+            heading="Discord Settings",
+        ),
     ]
 
     def process_form_submission(self, form: Any) -> Any:
@@ -43,6 +45,7 @@ class AbstractDiscordFormPage(FormMixin, Page):
         )
         return submission
 
+
 class ContactFormPage(AbstractDiscordFormPage):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
@@ -52,9 +55,9 @@ class ContactFormPage(AbstractDiscordFormPage):
 
     content_panels = Page.content_panels + [
         FormSubmissionsPanel(),
-        FieldPanel('intro'),
-        InlinePanel('form_fields', label="Form fields"),
-        FieldPanel('thank_you_text'),
+        FieldPanel("intro"),
+        InlinePanel("form_fields", label="Form fields"),
+        FieldPanel("thank_you_text"),
     ]
 
     class Meta:
