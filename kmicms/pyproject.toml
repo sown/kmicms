@@ -13,6 +13,7 @@ select = [
     "DTZ",
     "E",
     "F",
+    "FA",
     "FBT",
     "I",
     "N",

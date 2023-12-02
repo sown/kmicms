@@ -10,8 +10,9 @@ CACHES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://suws-web.containers-1.sown.org.uk",
-    "https://sown-web.containers-1.sown.org.uk",
+    "https://kmicms.containers-1.sown.org.uk",
+    "https://sown-staging.containers-1.sown.org.uk",
+    "https://suws-staging.containers-1.sown.org.uk",
 ]
 
 DATABASE = {
@@ -32,7 +33,9 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 OIDC_ENABLED = True
 OIDC_RP_CLIENT_ID = os.environ.get("OIDC_RP_CLIENT_ID")
 OIDC_RP_CLIENT_SECRET = os.environ.get("OIDC_RP_CLIENT_SECRET")
+SSO_STAFF_GROUP_NAME = os.environ.get("SSO_STAFF_GROUP_NAME")
+SSO_SUPERUSER_GROUP_NAME = os.environ.get("SSO_SUPERUSER_GROUP_NAME")
 
 TIME_ZONE = "Europe/London"
 
-WAGTAILADMIN_BASE_URL = "https://sown-web.containers-1.sown.org.uk"
+WAGTAILADMIN_BASE_URL = "https://kmicms.containers-1.sown.org.uk"

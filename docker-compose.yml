@@ -15,7 +15,7 @@ services:
       - default
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.wagtail.rule=Host(`suws-web.containers-1.sown.org.uk`) || Host(`sown-web.containers-1.sown.org.uk`)"
+      - "traefik.http.routers.wagtail.rule=Host(`suws-staging.containers-1.sown.org.uk`) || Host(`sown-staging.containers-1.sown.org.uk`) || Host(`kmicms.containers-1.sown.org.uk`)"
       - "traefik.http.routers.wagtail.tls=true"
       - "traefik.http.routers.wagtail.tls.certresolver=le"
       - "traefik.http.services.wagtail.loadbalancer.server.port=80"

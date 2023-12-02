@@ -211,8 +211,8 @@ OIDC_OP_DOMAIN = "sso.sown.org.uk"
 OIDC_OP_JWKS_ENDPOINT = "https://sso.sown.org.uk/application/o/wagtail/jwks/"
 OIDC_RP_SCOPES = "openid email profile"
 
-SSO_STAFF_GROUP_NAME = "wagtail:staff"
-SSO_SUPERUSER_GROUP_NAME = "wagtail:superuser"
+SSO_STAFF_GROUP_NAME = getattr(configuration, "SSO_STAFF_GROUP_NAME", "kmicms:staff")
+SSO_SUPERUSER_GROUP_NAME = getattr(configuration, "SSO_SUPERUSER_GROUP_NAME", "kmicms:superuser")
 
 LOGIN_REDIRECT_URL = "/admin/"
 LOGOUT_REDIRECT_URL = "/"
