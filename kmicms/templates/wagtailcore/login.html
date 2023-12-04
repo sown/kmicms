@@ -1,0 +1,30 @@
+{% extends "layouts/page.html" %}
+{% load auth_tags crispy_forms_tags i18n %}
+
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+    {% use_conventional_auth as conventional_auth_enabled %}
+    <div class="container mt-3 auth-panel__container">
+        <div class="auth-panel__content">
+            <h1 class="heading text-center mb-5">{% trans "Log in" %}</h1>
+
+            {% if next and request.user.is_authenticated %}
+                <p>{% trans "Your account doesn't have access to this page. To proceed, please log in with an account that has access." %}</p>
+            {% endif %}
+            
+            {% if conventional_auth_enabled %}
+                <form method="post" action="{% url 'wagtailcore_login' %}">
+                    {% csrf_token %}
+                    {{ form|crispy }}
+                    <input type="submit" value="{% trans "Log in" %}" class="btn btn-primary w-100" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                </form>
+            {% else %}
+                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-primary w-100">
+                    <em>{% trans 'Sign in with SOWN SSO' %}</em>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
