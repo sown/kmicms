@@ -1,23 +1,24 @@
 .PHONY: all check clean dev format format-check lint lint-fix
 
-CMD:=
 PYMODULE:=kmicms
 MANAGEPY:=$(CMD) ./$(PYMODULE)/manage.py
-APPS:=kmicms core pages
+APPS:=kmicms accounts core integrations pages
 
 all: format lint check
 
 format:
-	$(CMD) ruff format $(PYMODULE)
+	ruff format $(PYMODULE)
+	cd $(PYMODULE) && find $(APPS) templates -name "*.html" | xargs djhtml
 
 format-check:
-	$(CMD) ruff format --check $(PYMODULE)
+	ruff format --check $(PYMODULE)
+	cd $(PYMODULE) && find $(APPS) templates -name "*.html" | xargs djhtml --check
 
 lint: 
-	$(CMD) ruff check $(PYMODULE)
+	ruff check $(PYMODULE)
 
 lint-fix: 
-	$(CMD) ruff check --fix $(PYMODULE)
+	ruff check --fix $(PYMODULE)
 
 check:
 	$(MANAGEPY) check

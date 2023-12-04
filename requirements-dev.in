@@ -4,6 +4,7 @@ pip-tools
 
 django-debug-toolbar
 
+djhtml
 ruff
 pytest
 pytest-cov

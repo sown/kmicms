@@ -12,7 +12,7 @@
             {% if next and request.user.is_authenticated %}
                 <p>{% trans "Your account doesn't have access to this page. To proceed, please log in with an account that has access." %}</p>
             {% endif %}
-            
+
             {% if conventional_auth_enabled %}
                 <form method="post" action="{% url 'wagtailcore_login' %}">
                     {% csrf_token %}

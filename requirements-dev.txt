@@ -109,6 +109,8 @@ djangorestframework==3.14.0
     # via
     #   -r requirements.txt
     #   wagtail
+djhtml==3.0.6
+    # via -r requirements-dev.in
 draftjs-exporter==2.1.7
     # via
     #   -r requirements.txt

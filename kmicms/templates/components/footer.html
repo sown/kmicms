@@ -11,7 +11,7 @@
                         {% elif block.block_type == "external_link" %}
                             <li class="list-inline-item"><a href="{{ block.value.url }}">{{ block.value.label }}</a></li>
                         {% endif %}
-                        
+
                         {% if not forloop.last %}
                             <li class="list-inline-item">⋅</li>
                         {% endif %}
@@ -22,9 +22,9 @@
             <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                 <ul class="list-inline mb-0">
                     {% for account in settings.core.SiteSettings.social_media_accounts.all %}
-                    <li class="list-inline-item me-4">
-                        <a href="{{ account.url }}" aria-label="{{ account.service_name }}"><i class="bi bi-{{ account.icon }} fs-3" aria-hidden="true"></i></a>
-                    </li>
+                        <li class="list-inline-item me-4">
+                            <a href="{{ account.url }}" aria-label="{{ account.service_name }}"><i class="bi bi-{{ account.icon }} fs-3" aria-hidden="true"></i></a>
+                        </li>
                     {% endfor %}
                 </ul>
             </div>
