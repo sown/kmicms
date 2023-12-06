@@ -145,7 +145,7 @@ typing-extensions==4.8.0
     #   pydantic-core
 urllib3==2.0.7
     # via requests
-wagtail==5.2.1
+wagtail==5.2.2
     # via -r requirements.in
 webencodings==0.5.1
     # via html5lib
