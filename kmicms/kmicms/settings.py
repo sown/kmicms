@@ -1,6 +1,7 @@
 import os
 import platform
 
+from django.contrib.messages import constants as messages
 from django.core.exceptions import ImproperlyConfigured
 from pkg_resources import parse_version
 
@@ -214,7 +215,9 @@ OIDC_RP_SCOPES = "openid email profile"
 SSO_STAFF_GROUP_NAME = getattr(configuration, "SSO_STAFF_GROUP_NAME", "kmicms:staff")
 SSO_SUPERUSER_GROUP_NAME = getattr(configuration, "SSO_SUPERUSER_GROUP_NAME", "kmicms:superuser")
 
-LOGIN_REDIRECT_URL = "/admin/"
+SSO_USER_SETTINGS_URL = "https://sso.sown.org.uk/if/user/#/settings"
+
+LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
 
 # https://docs.wagtail.org/en/v5.2.1/reference/settings.html#wagtail-password-management-enabled
@@ -229,6 +232,19 @@ WAGTAILUSERS_PASSWORD_ENABLED = False
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
+# Discord Integration
+DISCORD_APP_CLIENT_ID = getattr(configuration, "DISCORD_APP_CLIENT_ID")
+DISCORD_APP_CLIENT_SECRET = getattr(configuration, "DISCORD_APP_CLIENT_SECRET")
+DISCORD_ACCESS_TOKEN_URL = "https://discordapp.com/api/oauth2/token"  # noqa: S105
+DISCORD_AUTHORIZE_URL = "https://discordapp.com/api/oauth2/authorize"
+DISCORD_REVOCATION_URL = "https://discord.com/api/oauth2/token/revoke"
+DISCORD_USERINFO_ENDPOINT = "https://discordapp.com/api/users/@me"
+DISCORD_CLIENT_KWARGS = {
+    "token_endpoint_auth_method": "client_secret_post",
+    "scope": "identify",
+}
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
@@ -238,6 +254,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+MESSAGE_TAGS = {
+    messages.DEBUG: "alert-info",
+    messages.INFO: "alert-info",
+    messages.SUCCESS: "alert-success",
+    messages.WARNING: "alert-warning",
+    messages.ERROR: "alert-danger",
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

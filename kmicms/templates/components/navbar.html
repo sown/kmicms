@@ -35,6 +35,7 @@
               <i class="bi bi-person"></i>&nbsp;{{ request.user.get_full_name }}
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="{% url 'accounts:profile' %}">My Profile</a></li>
               {% if perms.wagtailadmin.can_access_admin %}
                 <li><a class="dropdown-item" href="{% url 'wagtailadmin_home' %}">Admin</a></li>
               {% endif %}

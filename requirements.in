@@ -7,6 +7,7 @@ django-libsass
 crispy-bootstrap5
 mozilla-django-oidc
 
+authlib>=1.2.1,<2
 pydantic>=2.4,<3
 requests
 

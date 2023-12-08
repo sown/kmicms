@@ -36,6 +36,9 @@ OIDC_RP_CLIENT_SECRET = os.environ.get("OIDC_RP_CLIENT_SECRET")
 SSO_STAFF_GROUP_NAME = os.environ.get("SSO_STAFF_GROUP_NAME")
 SSO_SUPERUSER_GROUP_NAME = os.environ.get("SSO_SUPERUSER_GROUP_NAME")
 
+DISCORD_APP_CLIENT_ID = os.environ.get("DISCORD_APP_CLIENT_ID")
+DISCORD_APP_CLIENT_SECRET = os.environ.get("DISCORD_APP_CLIENT_SECRET")
+
 TIME_ZONE = "Europe/London"
 
 WAGTAILADMIN_BASE_URL = "https://kmicms.containers-1.sown.org.uk"

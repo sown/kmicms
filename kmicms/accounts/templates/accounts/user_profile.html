@@ -1,0 +1,50 @@
+{% extends "layouts/page.html" %}
+
+{% block title %}My Profile{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1 class="heading">My Profile</h1>
+        {% include "components/messages.html" %}
+        <p>Your SUWS / SOWN profile holds data in accordance with our privacy policy. Please contact a member of the committee for further details.</p>
+        <div class="row align-items-start mt-3">
+            <section class="col">
+                <h2 class="heading h3">Personal Details</h2>
+                <dl class="row mt-3 ">
+                    <dt class="col-sm-3">Name</dt>
+                    <dd class="col-sm-9">{{ request.user.first_name }} {{ request.user.last_name }}</dd>
+
+                    <dt class="col-sm-3">Username</dt>
+                    <dd class="col-sm-9"><code>{{ request.user.username }}</code></dd>
+
+                    <dt class="col-sm-3">Email Address</dt>
+                    <dd class="col-sm-9">{{ request.user.email }}</dd>
+                </dl>
+                <a href="{{ sso_user_settings_url }}" target="_blank" class="btn btn-primary w-50">
+                    Update my details
+                </a>
+            </section>
+            <section class="col">
+                <h2 class="heading h3">Discord</h2>
+                {% if request.user.discord_connection %}
+                    <p>Your account is connected to Discord.</p>
+                    <dl class="row mt-3 ">
+                        <dt class="col-sm-3">Username</dt>
+                        <dd class="col-sm-9"><code>@{{ request.user.discord_connection.discord_account.username }}</code></dd>
+
+                        <dt class="col-sm-3">ID</dt>
+                        <dd class="col-sm-9"><code>{{ request.user.discord_connection.discord_account.discord_id }}</code></dd>
+                    </dl>
+                    <a href="{% url 'accounts:discord_oauth_disconnect' %}" class="btn btn-warning w-50">
+                        Disconnect
+                    </a>
+                {% else %}
+                    <p>Your account is not connected to Discord.</p>
+                    <a href="{% url 'accounts:discord_oauth_setup' %}" class="btn btn-primary w-50" style="background-color: #5865f2;">
+                        <i class="bi bi-discord"></i>&nbsp;Connect to Discord
+                    </a>
+                {% endif %}
+            </section>
+        </div>
+    </div>
+{% endblock %}
