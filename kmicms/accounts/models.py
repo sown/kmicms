@@ -9,7 +9,7 @@ class User(AbstractUser):
 
 
 class DiscordAccount(models.Model):
-    discord_id = models.IntegerField(unique=True)
+    discord_id = models.PositiveBigIntegerField(unique=True)
     username = models.CharField(max_length=255, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
