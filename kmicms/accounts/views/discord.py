@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import datetime
-from typing import Any
 from zoneinfo import ZoneInfo
 
 from authlib.integrations.django_client import OAuth
@@ -13,20 +12,9 @@ from django.forms import BaseModelForm, Form
 from django.http import HttpRequest, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import DeleteView, TemplateView, View
+from django.views.generic import DeleteView, View
 
-from .models import DiscordAccount, DiscordConnection
-
-
-class UserProfileView(LoginRequiredMixin, TemplateView):
-    template_name = "accounts/user_profile.html"
-
-    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
-        return super().get_context_data(
-            sso_user_settings_url=settings.SSO_USER_SETTINGS_URL,
-            **kwargs,
-        )
-
+from accounts.models import DiscordAccount, DiscordConnection
 
 oauth = OAuth()
 oauth.register(
