@@ -72,6 +72,12 @@ class DiscordOAuthProfileRedirectView(LoginRequiredMixin, View):
             account.username = userinfo["username"]
             account.save()
 
+        if DiscordConnection.objects.filter(discord_account=account).exists():
+            messages.error(
+                request, "That Discord account is connected to another user. Please disconnect it and try again."
+            )
+            return redirect("accounts:profile")
+
         expires_at = datetime.fromtimestamp(token["expires_at"], ZoneInfo("UTC"))
         DiscordConnection.objects.create(
             user=request.user,
