@@ -16,10 +16,6 @@ asgiref==3.7.2
     # via
     #   -r requirements.txt
     #   django
-async-timeout==4.0.3
-    # via
-    #   -r requirements.txt
-    #   redis
 authlib==1.2.1
     # via -r requirements.txt
 beautifulsoup4==4.11.2
@@ -50,9 +46,6 @@ cryptography==41.0.5
     # via
     #   -r requirements.txt
     #   authlib
-    #   josepy
-    #   mozilla-django-oidc
-    #   pyopenssl
 defusedxml==0.7.1
     # via
     #   -r requirements.txt
@@ -70,7 +63,6 @@ django==4.2.7
     #   django-taggit
     #   django-treebeard
     #   djangorestframework
-    #   mozilla-django-oidc
     #   wagtail
 django-appconf==1.0.5
     # via
@@ -138,10 +130,6 @@ idna==3.4
     #   requests
 iniconfig==2.0.0
     # via pytest
-josepy==1.14.0
-    # via
-    #   -r requirements.txt
-    #   mozilla-django-oidc
 l18n==2021.3
     # via
     #   -r requirements.txt
@@ -150,8 +138,6 @@ libsass==0.22.0
     # via
     #   -r requirements.txt
     #   django-libsass
-mozilla-django-oidc==3.0.0
-    # via -r requirements.txt
 openpyxl==3.1.2
     # via
     #   -r requirements.txt
@@ -195,10 +181,6 @@ pydantic-core==2.10.1
     # via
     #   -r requirements.txt
     #   pydantic
-pyopenssl==23.3.0
-    # via
-    #   -r requirements.txt
-    #   josepy
 pyproject-hooks==1.0.0
     # via build
 pytest==7.4.3
@@ -225,7 +207,6 @@ redis==5.0.1
 requests==2.31.0
     # via
     #   -r requirements.txt
-    #   mozilla-django-oidc
     #   wagtail
 rjsmin==1.2.1
     # via

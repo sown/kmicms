@@ -22,7 +22,7 @@
                 </form>
             {% else %}
                 {# The view should automatically redirect to SSO anyway, but in case it doesn't... #}
-                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-primary w-100">
+                <a href="{% url 'accounts:login' %}" class="btn btn-primary w-100">
                     <em>{% trans 'Sign in with SOWN SSO' %}</em>
                 </a>
             {% endif %}

@@ -14,14 +14,14 @@
             {% endif %}
 
             {% if conventional_auth_enabled %}
-                <form method="post" action="{% url 'wagtailcore_login' %}">
+                <form method="post" action="{% url 'accounts:login' %}">
                     {% csrf_token %}
                     {{ form|crispy }}
                     <input type="submit" value="{% trans "Log in" %}" class="btn btn-primary w-100" />
                     <input type="hidden" name="next" value="{{ next }}" />
                 </form>
             {% else %}
-                <a href="{% url 'oidc_authentication_init' %}" class="btn btn-primary w-100">
+                <a href="{% url 'accounts:login' %}" class="btn btn-primary w-100">
                     <em>{% trans 'Sign in with SOWN SSO' %}</em>
                 </a>
             {% endif %}

@@ -13,7 +13,7 @@
     {% if conventional_auth_enabled %}
         {{ block.super }}
     {% else %}
-        <a href="{% url 'oidc_authentication_init' %}" class="button button-longrunning" data-clicked-text="{% trans 'Signing in…' %}">
+        <a href="{% url 'accounts:login' %}" class="button button-longrunning" data-clicked-text="{% trans 'Signing in…' %}">
             <span class="icon icon-spinner"></span>
             <em>{% trans 'Sign in with SOWN SSO' %}</em>
         </a>

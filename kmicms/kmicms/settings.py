@@ -115,7 +115,6 @@ INSTALLED_APPS = [
     "taggit",
     "django.contrib.admin",
     "django.contrib.auth",
-    "mozilla_django_oidc",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.sitemaps",
@@ -132,8 +131,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
-    # Make sure to check for deauthentication during a session:
-    "mozilla_django_oidc.middleware.SessionRefresh",
 ]
 
 if DEBUG:
@@ -186,31 +183,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-    "django.contrib.auth.backends.ModelBackend",
-    "accounts.oidc.SOWNOIDCAuthenticationBackend",
-)
+# SSO configuration
 
-# Mozilla OpenID Connect/Auth0 configuration
+USE_CONVENTIONAL_AUTH = not getattr(configuration, "SSO_ENABLED", False)
 
-USE_CONVENTIONAL_AUTH = not getattr(configuration, "OIDC_ENABLED", False)
-
-# disable user creating during authentication
-OIDC_CREATE_USER = True
-
-# How frequently do we check with the provider that the user still exists.
-OIDC_RENEW_ID_TOKEN_EXPIRY_SECONDS = 15 * 60
-
-OIDC_RP_SIGN_ALGO = "RS256"
-OIDC_RP_CLIENT_ID = getattr(configuration, "OIDC_RP_CLIENT_ID")
-OIDC_RP_CLIENT_SECRET = getattr(configuration, "OIDC_RP_CLIENT_SECRET")
-
-OIDC_OP_AUTHORIZATION_ENDPOINT = "https://sso.sown.org.uk/application/o/authorize/"
-OIDC_OP_TOKEN_ENDPOINT = "https://sso.sown.org.uk/application/o/token/"  # noqa: S105
-OIDC_OP_USER_ENDPOINT = "https://sso.sown.org.uk/application/o/userinfo/"
-OIDC_OP_DOMAIN = "sso.sown.org.uk"
-OIDC_OP_JWKS_ENDPOINT = "https://sso.sown.org.uk/application/o/kmicms-staging/jwks/"
-OIDC_RP_SCOPES = "openid email profile"
+SSO_OIDC_CONFIGURATION_URL = getattr(configuration, "SSO_OIDC_CONFIGURATION_URL")
+SSO_OIDC_CLIENT_ID = getattr(configuration, "SSO_OIDC_CLIENT_ID")
+SSO_OIDC_CLIENT_SECRET = getattr(configuration, "SSO_OIDC_CLIENT_SECRET")
+SSO_OIDC_SCOPES = "openid email profile"
 
 SSO_STAFF_GROUP_NAME = getattr(configuration, "SSO_STAFF_GROUP_NAME", "kmicms:staff")
 SSO_SUPERUSER_GROUP_NAME = getattr(configuration, "SSO_SUPERUSER_GROUP_NAME", "kmicms:superuser")
