@@ -3,7 +3,6 @@ from __future__ import annotations
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
-from authlib.integrations.django_client import OAuth
 from crispy_forms import helper, layout
 from django.conf import settings
 from django.contrib import messages
@@ -15,18 +14,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DeleteView, View
 
 from accounts.models import DiscordAccount, DiscordConnection
-
-oauth = OAuth()
-oauth.register(
-    "discord",
-    client_id=settings.DISCORD_APP_CLIENT_ID,
-    client_secret=settings.DISCORD_APP_CLIENT_SECRET,
-    access_token_url=settings.DISCORD_ACCESS_TOKEN_URL,
-    authorize_url=settings.DISCORD_AUTHORIZE_URL,
-    revocation_url=settings.DISCORD_REVOCATION_URL,
-    userinfo_endpoint=settings.DISCORD_USERINFO_ENDPOINT,
-    client_kwargs=settings.DISCORD_CLIENT_KWARGS,
-)
+from accounts.oauth import oauth_config
 
 
 class DiscordOAuthProfileAuthorizeView(LoginRequiredMixin, View):
@@ -36,7 +24,7 @@ class DiscordOAuthProfileAuthorizeView(LoginRequiredMixin, View):
             return redirect("accounts:profile")
 
         redirect_uri = request.build_absolute_uri(reverse("accounts:discord_oauth_redirect"))
-        return oauth.discord.authorize_redirect(request, redirect_uri)
+        return oauth_config.discord.authorize_redirect(request, redirect_uri)
 
 
 class DiscordOAuthProfileRedirectView(LoginRequiredMixin, View):
@@ -45,8 +33,8 @@ class DiscordOAuthProfileRedirectView(LoginRequiredMixin, View):
             messages.warning(request, "Your account is already connected to Discord.")
             return redirect("accounts:profile")
 
-        token = oauth.discord.authorize_access_token(request)
-        userinfo = oauth.discord.userinfo(token=token)
+        token = oauth_config.discord.authorize_access_token(request)
+        userinfo = oauth_config.discord.userinfo(token=token)
 
         account, created = DiscordAccount.objects.get_or_create(
             discord_id=int(userinfo["id"]),
@@ -96,7 +84,7 @@ class DiscordAccountProfileDisconnectView(LoginRequiredMixin, DeleteView):
         resp = super().form_valid(form)
 
         # Revoke the refresh token
-        oauth.discord._get_oauth_client().revoke_token(
+        oauth_config.discord._get_oauth_client().revoke_token(
             settings.DISCORD_REVOCATION_URL,
             token=self.object.refresh_token,
             token_type_hint="refresh_token",  # noqa: S106

@@ -1,11 +1,12 @@
 from typing import Any
+
 from django import http
 from django.conf import settings
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect
 
-class LoginView(auth_views.LoginView):
 
+class LoginView(auth_views.LoginView):
     def dispatch(self, request: http.HttpRequest, *args: Any, **kwargs: Any) -> http.HttpResponse:
         # Redirect a user that is already logged in.
         # Borrowed from django.contrib.auth.views.LoginView.dispatch
@@ -20,6 +21,6 @@ class LoginView(auth_views.LoginView):
 
         # If SSO is enabled, redirect immediately.
         if not settings.USE_CONVENTIONAL_AUTH:
-            return redirect('oidc_authentication_init')
+            return redirect("oidc_authentication_init")
 
         return super().dispatch(request, *args, **kwargs)
