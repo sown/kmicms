@@ -87,7 +87,6 @@ EMAIL_USE_TLS = EMAIL.get("USE_TLS", False)
 EMAIL_TIMEOUT = EMAIL.get("TIMEOUT", 10)
 SERVER_EMAIL = EMAIL.get("FROM_EMAIL")
 
-
 INSTALLED_APPS = [
     "accounts",
     "core",
@@ -96,6 +95,7 @@ INSTALLED_APPS = [
     "pages.standard_page",
     # 3rd party
     "compressor",
+    "django_recaptcha",
     "crispy_forms",
     "crispy_bootstrap5",
     # Wagtail / Django
@@ -311,3 +311,8 @@ AVAILABLE_BRANDS = [("sown", "SOWN"), ("suws", "SUWS")]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# ReCAPTCHA
+
+RECAPTCHA_PUBLIC_KEY = getattr(configuration, "RECAPTCHA_PUBLIC_KEY", None)
+RECAPTCHA_PRIVATE_KEY = getattr(configuration, "RECAPTCHA_PRIVATE_KEY", None)
