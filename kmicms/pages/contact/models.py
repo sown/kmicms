@@ -10,6 +10,8 @@ from wagtail.models import Page
 
 from integrations.discord import submit_discord_webhook_for_form
 
+from .forms import ContactFormBuilder, remove_captcha_field
+
 
 class FormField(AbstractFormField):
     page = ParentalKey("ContactFormPage", on_delete=models.CASCADE, related_name="form_fields")
@@ -37,6 +39,8 @@ class AbstractDiscordFormPage(FormMixin, Page):
     ]
 
     def process_form_submission(self, form: Any) -> Any:
+        remove_captcha_field(form)
+
         submission = super().process_form_submission(form)
         submit_discord_webhook_for_form(
             self.discord_webhook,
@@ -50,6 +54,7 @@ class ContactFormPage(AbstractDiscordFormPage):
     intro = RichTextField(blank=True)
     thank_you_text = RichTextField(blank=True)
 
+    form_builder = ContactFormBuilder
     parent_page_types = ["home.HomePage", "standard_page.StandardPage"]
     subpage_types = []
 
