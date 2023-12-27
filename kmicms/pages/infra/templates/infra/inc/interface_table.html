@@ -1,0 +1,29 @@
+{% if interfaces %}
+    <h2>Interfaces</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Enabled</th>
+                <th scope="col">Description</th>
+                <th scope="col">IP Addresses</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for interface in interfaces %}
+                <tr>
+                    <td><code>{{ interface.name }}</code></td>
+                    <td>{% if interface.enabled %}Enabled{% else %}Disabled{% endif %}</td>
+                    <td>{% if interface.description %}{{ interface.description}}{% else %}-{% endif %}</td>
+                    <td>
+                        <ul>
+                            {% for address in interface.ip_addresses %}
+                                <li><code>{{ address.display }}</code>: {{ address.dns_name }}</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}

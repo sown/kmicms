@@ -92,6 +92,7 @@ INSTALLED_APPS = [
     "core",
     "pages.contact",
     "pages.home",
+    "pages.infra",
     "pages.standard_page",
     # 3rd party
     "compressor",
@@ -101,6 +102,7 @@ INSTALLED_APPS = [
     # Wagtail / Django
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
+    "wagtail.contrib.routable_page",
     "wagtail.contrib.settings",
     "wagtail.embeds",
     "wagtail.sites",
@@ -313,6 +315,11 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # ReCAPTCHA
-
 RECAPTCHA_PUBLIC_KEY = getattr(configuration, "RECAPTCHA_PUBLIC_KEY", None)
 RECAPTCHA_PRIVATE_KEY = getattr(configuration, "RECAPTCHA_PRIVATE_KEY", None)
+
+# Netbox Integration
+NETBOX_GRAPHQL_ENDPOINT = getattr(configuration, "NETBOX_GRAPHQL_ENDPOINT")
+NETBOX_API_TOKEN = getattr(configuration, "NETBOX_API_TOKEN")
+NETBOX_REQUEST_TIMEOUT = getattr(configuration, "NETBOX_REQUEST_TIMEOUT", 0.5)
+NETBOX_CACHE_TTL = getattr(configuration, "NETBOX_CACHE_TTL", 300)

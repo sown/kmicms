@@ -8,7 +8,7 @@ from core.blocks import BodyBlock
 
 class HomePage(Page):
     parent_page_types = ["wagtailcore.Page"]
-    subpage_types = ["standard_page.StandardPage", "contact.ContactFormPage"]
+    subpage_types = ["standard_page.StandardPage", "contact.ContactFormPage", "infra.NetboxInfrastructurePage"]
 
     content = StreamField(BodyBlock(), use_json_field=True)
 

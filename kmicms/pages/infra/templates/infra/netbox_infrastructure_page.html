@@ -1,0 +1,28 @@
+{% extends "layouts/page.html" %}
+
+{% load wagtailcore_tags wagtailroutablepage_tags %}
+
+{% block content %}
+  <div class="container mt-3">
+    <h1 class="heading">{{ page.title }}</h1>
+    {% include "components/breadcrumbs.html" %}
+
+    <p>{{ page.introduction|richtext}}</p>
+
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">Devices</h5>
+        <p class="card-text">{{ page.device_description|richtext}}</p>
+        <a href="{% routablepageurl page 'device_index' %}" class="btn btn-primary">View devices</a>
+      </div>
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-body">
+        <h5 class="card-title">Virtual Machines</h5>
+        <p class="card-text">{{ page.vm_description|richtext}}</p>
+        <a href="{% routablepageurl page 'vm_index' %}" class="btn btn-primary">View VMs</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}

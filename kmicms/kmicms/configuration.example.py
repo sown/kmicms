@@ -75,3 +75,10 @@ EMAIL: dict[str, str | int | bool] = {
 
 # Time zone (default: UTC)
 TIME_ZONE = "UTC"
+
+# Netbox
+
+NETBOX_GRAPHQL_ENDPOINT = "https://netbox.example.com/graphql/"
+NETBOX_API_TOKEN = "abc"  # noqa: S105
+NETBOX_REQUEST_TIMEOUT = 0.5
+NETBOX_CACHE_TTL = 300
