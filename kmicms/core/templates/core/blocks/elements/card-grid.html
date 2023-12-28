@@ -1,0 +1,8 @@
+{% load wagtailcore_tags %}
+<div class="row row-cols-1 {{ value.grid_class }} g-4">
+    {% for card in value.card_list %}
+        <div class="col">
+            {% include_block card %}
+        </div>
+    {% endfor %}
+</div>
