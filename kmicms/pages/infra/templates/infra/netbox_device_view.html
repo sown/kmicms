@@ -1,0 +1,32 @@
+{% extends "layouts/page.html" %}
+{% load wagtailroutablepage_tags %}
+
+{% block title %}Device: {{ device.name }}{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1 class="heading">
+            Device: {{ device.name }}
+        </h1>
+        {% routablepageurl page 'device_index' as device_index_url %}
+        {% include "infra/inc/breadcrumbs_subpage.html" with title=device.name parent_title="Devices" parent_link=device_index_url %}
+
+        <div class="row">
+            <div class="col-md-6">
+                {% include "infra/inc/server_dl.html" with server=device %}
+            </div>
+            <div class="col-md-6">
+                <dl class="row">
+                    <dt class="col-sm-3">Rack</dt>
+                    <dd class="col-sm-9">{{ device.rack.name }}</dd>
+                    <dt class="col-sm-3">Location</dt>
+                    <dd class="col-sm-9">{{ device.location.name }}</dd>
+                    <dt class="col-sm-3">Type</dt>
+                    <dd class="col-sm-9">{{ device.device_type.manufacturer.name }} {{ device.device_type.model }}</dd>
+                </dl>
+            </div>
+        </div>
+
+        {% include "infra/inc/interface_table.html" with interfaces=device.interfaces %}
+    </div>
+{% endblock %}

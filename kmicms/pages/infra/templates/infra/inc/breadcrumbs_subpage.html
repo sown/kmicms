@@ -1,0 +1,28 @@
+{% load wagtailcore_tags wagtailroutablepage_tags %}
+
+{% block breadcrumbs %}
+    {% if page.get_ancestors|length > 1 %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% for child_page in page.get_ancestors %}
+                    {% if not child_page.is_root %}
+                        {% if child_page.depth > 1 %}
+                            <a class="breadcrumb-item" href="{% pageurl child_page %}">
+                                {{ child_page.title }}
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+                <a class="breadcrumb-item" href="{% pageurl page %}">
+                    {{ page.title }}
+                </a>
+                {% if parent_link and parent_title %}
+                    <a class="breadcrumb-item" href="{{ parent_link }}">
+                        {{ parent_title }}
+                    </a>
+                {% endif %}
+                <li class="breadcrumb-item active">{{ title }}</li>
+            </ol>
+        </nav>
+    {% endif %}
+{% endblock breadcrumbs %}

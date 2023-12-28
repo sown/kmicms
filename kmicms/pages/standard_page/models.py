@@ -13,7 +13,7 @@ class StandardPage(Page):
     show_title = models.BooleanField(help_text="Show page title at top of page?", default=True)
 
     parent_page_types = ["home.HomePage", "standard_page.StandardPage"]
-    subpage_types = ["standard_page.StandardPage", "contact.ContactFormPage"]
+    subpage_types = ["standard_page.StandardPage", "contact.ContactFormPage", "infra.NetboxInfrastructurePage"]
 
     content_panels = [
         TitleFieldPanel("title"),
