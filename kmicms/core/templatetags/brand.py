@@ -24,7 +24,7 @@ def static_for_brand(parser: Any, token: Any) -> str:
 
     Usage::
 
-        {% static path [as varname] %}
+        {% static_for_brand path [as varname] %}
 
     Examples::
 
