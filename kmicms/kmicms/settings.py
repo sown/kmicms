@@ -14,9 +14,9 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # Validate Python version
-if parse_version(platform.python_version()) < parse_version("3.9.0"):  # pragma: nocover
+if parse_version(platform.python_version()) < parse_version("3.10.0"):  # pragma: nocover
     raise RuntimeError(
-        f"SOWN CMS requires Python 3.9 or higher (current: Python {platform.python_version()})",
+        f"SOWN CMS requires Python 3.10 or higher (current: Python {platform.python_version()})",
     )
 
 #
