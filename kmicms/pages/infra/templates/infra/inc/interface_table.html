@@ -1,3 +1,4 @@
+{% load infra_tags %}
 {% if interfaces %}
     <h2>Interfaces</h2>
     <table class="table">
@@ -16,11 +17,17 @@
                     <td>{% if interface.enabled %}Enabled{% else %}Disabled{% endif %}</td>
                     <td>{% if interface.description %}{{ interface.description}}{% else %}-{% endif %}</td>
                     <td>
-                        <ul>
-                            {% for address in interface.ip_addresses %}
-                                <li><code>{{ address.display }}</code>: {{ address.dns_name }}</li>
-                            {% endfor %}
-                        </ul>
+                        {% if interface.ip_addresses %}
+                            <ul class="list-group">
+                                {% for address in interface.ip_addresses %}
+                                    <li class="list-group-item">
+                                        <code>{{ address.display }}</code>: {{ address.dns_name|format_dns }}
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        {% else %}
+                            -
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

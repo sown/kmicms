@@ -6,14 +6,16 @@
     <dd class="col-sm-9">{% include 'infra/inc/colored_badge.html' with info=server.role %}</dd>
 
     <dt class="col-sm-3">Platform</dt>
-    <dd class="col-sm-9">{{ server.platform.name }}</dd>
+    <dd class="col-sm-9">{% if server.platform.name%}{{ server.platform.name }}{% else %}-{% endif %}</dd>
 
-    <dt class="col-sm-3">Tags</dt>
-    <dd class="col-sm-9">
-        {% for tag in server.tags %}
-            {% include "infra/inc/colored_badge.html" with info=tag %}
-        {% endfor %}
-    </dd>
+    {% if server.tags %}
+        <dt class="col-sm-3">Tags</dt>
+        <dd class="col-sm-9">
+            {% for tag in server.tags %}
+                {% include "infra/inc/colored_badge.html" with info=tag %}
+            {% endfor %}
+        </dd>
+    {% endif %}
 
     {% if server.description %}
         <dt class="col-sm-3">Description</dt>
