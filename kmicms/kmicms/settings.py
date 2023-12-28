@@ -16,7 +16,7 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 # Validate Python version
 if parse_version(platform.python_version()) < parse_version("3.10.0"):  # pragma: nocover
     raise RuntimeError(
-        f"SOWN CMS requires Python 3.10 or higher (current: Python {platform.python_version()})",
+        f"KMI-CMS requires Python 3.10 or higher (current: Python {platform.python_version()})",
     )
 
 #
@@ -231,9 +231,6 @@ DISCORD_CLIENT_KWARGS = {
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
 USE_I18N = True
-
-USE_L10N = True
-
 USE_TZ = True
 
 MESSAGE_TAGS = {
@@ -262,7 +259,14 @@ COMPRESS_PRECOMPILERS = (("text/x-scss", "django_libsass.SassCompiler"),)
 # ManifestStaticFilesStorage is recommended in production, to prevent outdated
 # JavaScript / CSS assets being served from cache (e.g. after a Wagtail upgrade).
 # See https://docs.djangoproject.com/en/4.2/ref/contrib/staticfiles/#manifeststaticfilesstorage
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+STORAGES = {
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.ManifestStaticFilesStorage",
+    },
+}
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "/static/"
