@@ -1,4 +1,5 @@
 from wagtail import blocks
+from wagtail.images.blocks import ImageChooserBlock
 
 
 class HeadingBlock(blocks.StructBlock):
@@ -48,3 +49,25 @@ class CallToActionBlock(blocks.StructBlock):
 
     class Meta:
         template = "core/blocks/elements/call-to-action.html"
+
+
+class CardBlock(blocks.StructBlock):
+    image = ImageChooserBlock()
+    title = blocks.TextBlock()
+    text = blocks.RichTextBlock()
+
+    class Meta:
+        label = "Card"
+        template = "core/blocks/elements/card.html"
+
+
+class CardGridBlock(blocks.StructBlock):
+    grid_class = blocks.ChoiceBlock(
+        [("row-cols-md-2", "2 Cards Wide"), ("row-cols-md-3", "3 Cards Wide"), ("row-cols-md-4", "4 Cards Wide")],
+        label="Grid Type",
+    )
+    card_list = blocks.ListBlock(CardBlock(), label="Cards")
+
+    class Meta:
+        label = "Card Grid"
+        template = "core/blocks/elements/card-grid.html"

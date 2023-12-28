@@ -1,13 +1,14 @@
 from wagtail import blocks
 
 from .components import MastheadBlock, ShowcaseBlock
-from .elements import AlertBlock, HeadingBlock
+from .elements import AlertBlock, CardGridBlock, HeadingBlock
 
 
 class StoryBlock(blocks.StreamBlock):
     heading = HeadingBlock()
     rich_text = blocks.RichTextBlock(editor="all-but-headings")
     alert = AlertBlock()
+    card_grid = CardGridBlock()
 
 
 class ContainerBlock(blocks.StructBlock):

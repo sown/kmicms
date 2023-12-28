@@ -1,0 +1,9 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+{% image value.image width-728 height-240 as tmp_image %}
+<div class="card">
+  <img src="{{ tmp_image.url }}" class="card-img-top" alt="Image">
+  <div class="card-body">
+    <h5 class="card-title">{{ value.title }}</h5>
+    <p class="card-text">{{ value.text|richtext}}</p>
+  </div>
+</div>
