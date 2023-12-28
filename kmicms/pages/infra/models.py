@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.http import Http404, HttpRequest, HttpResponse
 from wagtail.admin.panels import FieldPanel, TitleFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
@@ -23,7 +24,12 @@ class NetboxInfrastructurePage(RoutablePageMixin, Page):
     ]
 
     def _get_client(self) -> NetboxClient:
-        return NetboxClient()
+        return NetboxClient(
+            graphql_endpoint=settings.NETBOX_GRAPHQL_ENDPOINT,
+            api_token=settings.NETBOX_API_TOKEN,
+            cache_ttl_seconds=settings.NETBOX_CACHE_TTL,
+            request_timeout=settings.NETBOX_REQUEST_TIMEOUT,
+        )
 
     def _handle_error(self, request: HttpRequest) -> HttpResponse:
         return self.render(
