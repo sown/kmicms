@@ -1,4 +1,5 @@
 from wagtail import blocks
+from wagtailcodeblock.blocks import CodeBlock
 
 from .components import MastheadBlock, ShowcaseBlock
 from .elements import AlertBlock, CardGridBlock, HeadingBlock
@@ -9,6 +10,7 @@ class StoryBlock(blocks.StreamBlock):
     rich_text = blocks.RichTextBlock(editor="all-but-headings")
     alert = AlertBlock()
     card_grid = CardGridBlock()
+    code = CodeBlock()
 
 
 class ContainerBlock(blocks.StructBlock):

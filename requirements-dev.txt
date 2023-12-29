@@ -253,6 +253,10 @@ urllib3==2.0.7
     #   requests
     #   responses
 wagtail==5.2.2
+    # via
+    #   -r requirements.txt
+    #   wagtailcodeblock
+wagtailcodeblock==1.29.0.1
     # via -r requirements.txt
 webencodings==0.5.1
     # via

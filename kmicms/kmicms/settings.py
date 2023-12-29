@@ -99,6 +99,7 @@ INSTALLED_APPS = [
     "django_recaptcha",
     "crispy_forms",
     "crispy_bootstrap5",
+    "wagtailcodeblock",
     # Wagtail / Django
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
