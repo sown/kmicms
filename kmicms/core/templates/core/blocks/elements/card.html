@@ -5,5 +5,8 @@
   <div class="card-body">
     <h5 class="card-title">{{ value.title }}</h5>
     <p class="card-text">{{ value.text|richtext}}</p>
+    {% for cta in value.cta_list %}
+      {% include_block cta %}
+    {% endfor %}
   </div>
 </div>

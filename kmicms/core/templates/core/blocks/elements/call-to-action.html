@@ -1,4 +1,4 @@
 {% load wagtailcore_tags %}
-<a class="btn btn-{{ value.style }} ms-2 me-2" href="{% pageurl value.link %}">
+<a class="btn btn-{{ value.style }} me-2" href="{% if value.link %}{% pageurl value.link %}{% else %}{{ value.external_link }}{% endif %}">
     {{ value.label }}
 </a>

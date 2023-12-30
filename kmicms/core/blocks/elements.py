@@ -1,3 +1,6 @@
+from typing import Any
+
+from django.core.exceptions import ValidationError
 from wagtail import blocks
 from wagtail.images.blocks import ImageChooserBlock
 
@@ -33,7 +36,6 @@ class AlertBlock(blocks.StructBlock):
 
 class CallToActionBlock(blocks.StructBlock):
     label = blocks.CharBlock()
-    link = blocks.PageChooserBlock()
     style = blocks.ChoiceBlock(
         choices=[
             ("primary", "Primary"),
@@ -46,15 +48,25 @@ class CallToActionBlock(blocks.StructBlock):
             ("dark", "Dark"),
         ]
     )
+    link = blocks.PageChooserBlock(required=False, label="Internal Link")
+    external_link = blocks.URLBlock(required=False, label="External Link")
 
     class Meta:
         template = "core/blocks/elements/call-to-action.html"
+        help_text = "bees"
+
+    def clean(self, value: Any) -> Any:
+        result = super().clean(value)
+        if not (bool(result["link"]) ^ bool(result["external_link"])):
+            raise ValidationError("Please add either an internal or external link.")
+        return result
 
 
 class CardBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.TextBlock()
     text = blocks.RichTextBlock()
+    cta_list = blocks.ListBlock(CallToActionBlock(), label="Calls to Action")
 
     class Meta:
         label = "Card"
