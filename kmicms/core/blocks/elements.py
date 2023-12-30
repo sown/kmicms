@@ -55,6 +55,7 @@ class CardBlock(blocks.StructBlock):
     image = ImageChooserBlock()
     title = blocks.TextBlock()
     text = blocks.RichTextBlock()
+    cta_list = blocks.ListBlock(CallToActionBlock(), label="Calls to Action")
 
     class Meta:
         label = "Card"
