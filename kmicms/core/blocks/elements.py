@@ -53,7 +53,6 @@ class CallToActionBlock(blocks.StructBlock):
 
     class Meta:
         template = "core/blocks/elements/call-to-action.html"
-        help_text = "bees"
 
     def clean(self, value: Any) -> Any:
         result = super().clean(value)
