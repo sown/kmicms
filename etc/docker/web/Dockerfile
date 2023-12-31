@@ -54,11 +54,9 @@ RUN mkdir /app/media
 
 COPY --from=builder ${VIRTUAL_ENV} ${VIRTUAL_ENV}
 
-COPY ./kmicms/kmicms/configuration.prod.py ./kmicms/configuration.py
+COPY --chown=wagtail:wagtail ./kmicms/kmicms/configuration.prod.py ./kmicms/configuration.py
 
-COPY kmicms .
-
-RUN chown -R wagtail:wagtail .
+COPY --chown=wagtail:wagtail kmicms .
 
 USER wagtail
 
