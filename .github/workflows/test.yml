@@ -16,19 +16,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python }}
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python }}
-      - name: Create virtualenv
-        run: python3 -m venv venv
-      - uses: actions/cache@v2
+      - name: Install Poetry
+        run: pip install poetry
+        shell: bash
+      - name: Use in-project virtualenv
+        run: poetry config virtualenvs.in-project true
+        shell: bash
+      - uses: actions/cache@v3
         with:
-          path: venv/
-          key: ${{ runner.os }}-${{ matrix.python }}-pip-${{ hashFiles('requirements.txt') }}-${{ hashFiles('requirements-dev.txt') }}
-      - name: Use virtualenv
-        run: source venv/bin/activate
+          path: .venv/
+          key: ${{ runner.os }}-${{ matrix.python }}-pip-${{ hashFiles('poetry.lock') }}-${{ hashFiles('pyproject.toml') }}
       - name: Install dependencies
-        run: pip install .
+        run: poetry install
+        shell: bash
       - name: Use the dev configuration
         run: cp kmicms/kmicms/configuration.dev.py kmicms/kmicms/configuration.py
       - name: Check Formatting
