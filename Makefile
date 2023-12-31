@@ -3,34 +3,35 @@
 PYMODULE:=kmicms
 MANAGEPY:=$(CMD) ./$(PYMODULE)/manage.py
 APPS:=kmicms accounts core integrations pages
+CMD:=poetry run
 
 all: format lint check test
 
 format:
-	poetry run ruff format $(PYMODULE)
-	cd $(PYMODULE) && find $(APPS) templates -name "*.html" | xargs poetry run djhtml
+	$(CMD) ruff format $(PYMODULE)
+	cd $(PYMODULE) && find $(APPS) templates -name "*.html" | xargs $(CMD) djhtml
 
 format-check:
-	poetry run ruff format --check $(PYMODULE)
-	cd $(PYMODULE) && find $(APPS) templates -name "*.html" | xargs poetry run djhtml --check
+	$(CMD) ruff format --check $(PYMODULE)
+	cd $(PYMODULE) && find $(APPS) templates -name "*.html" | xargs $(CMD) djhtml --check
 
 lint: 
-	poetry run ruff check $(PYMODULE)
+	$(CMD) ruff check $(PYMODULE)
 
 lint-fix: 
-	poetry run ruff check --fix $(PYMODULE)
+	$(CMD) ruff check --fix $(PYMODULE)
 
 check:
-	poetry run $(MANAGEPY) check
+	$(CMD) $(MANAGEPY) check
 
 dev:
-	poetry run $(MANAGEPY) runserver
+	$(CMD) $(MANAGEPY) runserver
 
 clean:
 	git clean -Xdf # Delete all files in .gitignore
 
 test: | $(PYMODULE)
-	cd kmicms && DJANGO_SETTINGS_MODULE=kmicms.settings poetry run pytest --cov=. $(APPS) $(PYMODULE)
+	cd kmicms && DJANGO_SETTINGS_MODULE=kmicms.settings $(CMD) pytest --cov=. $(APPS) $(PYMODULE)
 
 test-cov:
-	cd kmicms && DJANGO_SETTINGS_MODULE=kmicms.settings poetry run pytest --cov=. $(APPS) $(PYMODULE) --cov-report html
+	cd kmicms && DJANGO_SETTINGS_MODULE=kmicms.settings $(CMD) pytest --cov=. $(APPS) $(PYMODULE) --cov-report html
