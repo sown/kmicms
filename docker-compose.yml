@@ -8,12 +8,10 @@ services:
     volumes:
       - staticfiles:/app/static
       - mediafiles:/app/media
-    ports:
-      - 8001:80
     depends_on:
       - web
     networks:
-      # - traefik
+      - traefik
       - default
     labels:
       - "traefik.enable=true"
@@ -72,6 +70,6 @@ volumes:
   staticfiles:
   mediafiles:
 
-# networks:
-#   traefik:
-#     external: true
+networks:
+  traefik:
+    external: true
