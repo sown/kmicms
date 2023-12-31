@@ -4,7 +4,7 @@ set -o errexit
 set -o pipefail
 set -o nounset
 
-python /app/kmicms/manage.py collectstatic --noinput
-python /app/kmicms/manage.py migrate
+python /app/manage.py collectstatic --noinput
+python /app/manage.py migrate
 
-/usr/local/bin/gunicorn kmicms.wsgi:application --bind 0.0.0.0:8000 --chdir=/app/kmicms
+/app/.venv/bin/gunicorn kmicms.wsgi:application --bind 0.0.0.0:8000 --chdir=/app

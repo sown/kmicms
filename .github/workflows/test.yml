@@ -28,7 +28,7 @@ jobs:
       - name: Use virtualenv
         run: source venv/bin/activate
       - name: Install dependencies
-        run: pip install -r requirements.txt -r requirements-dev.txt
+        run: pip install .
       - name: Use the dev configuration
         run: cp kmicms/kmicms/configuration.dev.py kmicms/kmicms/configuration.py
       - name: Check Formatting

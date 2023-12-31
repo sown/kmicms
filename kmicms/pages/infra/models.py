@@ -1,11 +1,10 @@
 from django.conf import settings
 from django.http import Http404, HttpRequest, HttpResponse
+from integrations.netbox import NetboxClient, NetboxRequestError
 from wagtail.admin.panels import FieldPanel, TitleFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
 from wagtail.fields import RichTextField
 from wagtail.models import Page
-
-from integrations.netbox import NetboxClient, NetboxRequestError
 
 
 class NetboxInfrastructurePage(RoutablePageMixin, Page):

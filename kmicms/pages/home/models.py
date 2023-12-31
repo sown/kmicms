@@ -1,9 +1,8 @@
+from core.blocks import BodyBlock
 from wagtail.admin.panels import FieldPanel, TitleFieldPanel
 from wagtail.fields import StreamField
 from wagtail.models import Page
 from wagtail.search import index
-
-from core.blocks import BodyBlock
 
 
 class HomePage(Page):

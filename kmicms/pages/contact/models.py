@@ -1,14 +1,13 @@
 from typing import Any
 
 from django.db import models
+from integrations.discord import submit_discord_webhook_for_form
 from modelcluster.fields import ParentalKey
 from wagtail.admin.panels import FieldPanel, InlinePanel, MultiFieldPanel
 from wagtail.contrib.forms.models import AbstractFormField, FormMixin
 from wagtail.contrib.forms.panels import FormSubmissionsPanel
 from wagtail.fields import RichTextField
 from wagtail.models import Page
-
-from integrations.discord import submit_discord_webhook_for_form
 
 from .forms import ContactFormBuilder, remove_captcha_field
 
