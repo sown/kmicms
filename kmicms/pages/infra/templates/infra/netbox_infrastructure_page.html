@@ -7,22 +7,32 @@
     <h1 class="heading">{{ page.title }}</h1>
     {% include "components/breadcrumbs.html" %}
 
-    <p>{{ page.introduction|richtext}}</p>
-
-    <div class="card mt-3">
-      <div class="card-body">
-        <h5 class="card-title">Devices</h5>
-        <p class="card-text">{{ page.device_description|richtext}}</p>
-        <a href="{% routablepageurl page 'device_index' %}" class="btn btn-primary">View devices</a>
+    <div class="row mt-3 mb-3">
+      <div class="col col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Devices</h5>
+            <p class="card-text">{{ page.device_description|richtext}}</p>
+            <a href="{% routablepageurl page 'device_index' %}" class="btn btn-primary">View devices</a>
+          </div>
+        </div>
+      </div>
+      <div class="col col-md-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Virtual Machines</h5>
+            <p class="card-text">{{ page.vm_description|richtext}}</p>
+            <a href="{% routablepageurl page 'vm_index' %}" class="btn btn-primary">View VMs</a>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="card mt-3">
-      <div class="card-body">
-        <h5 class="card-title">Virtual Machines</h5>
-        <p class="card-text">{{ page.vm_description|richtext}}</p>
-        <a href="{% routablepageurl page 'vm_index' %}" class="btn btn-primary">View VMs</a>
-      </div>
-    </div>
+    {% for block in page.content %}
+      <section class="block-{{ block.block_type }}">
+        {{ block }}
+      </section>
+    {% endfor %}
+
   </div>
 {% endblock %}

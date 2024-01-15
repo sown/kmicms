@@ -1,9 +1,10 @@
+from core.blocks import StoryBlock
 from django.conf import settings
 from django.http import Http404, HttpRequest, HttpResponse
 from integrations.netbox import NetboxClient, NetboxRequestError
 from wagtail.admin.panels import FieldPanel, TitleFieldPanel
 from wagtail.contrib.routable_page.models import RoutablePageMixin, path
-from wagtail.fields import RichTextField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.models import Page
 
 
@@ -11,13 +12,13 @@ class NetboxInfrastructurePage(RoutablePageMixin, Page):
     max_count = 1
     subpage_types = []
 
-    introduction = RichTextField()
+    content = StreamField(StoryBlock(), use_json_field=True)
     device_description = RichTextField()
     vm_description = RichTextField()
 
     content_panels = [
         TitleFieldPanel("title"),
-        FieldPanel("introduction"),
+        FieldPanel("content"),
         FieldPanel("device_description"),
         FieldPanel("vm_description"),
     ]
