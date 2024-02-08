@@ -1654,17 +1654,21 @@ testing = ["Jinja2 (>=3.0,<3.2)", "azure-mgmt-cdn (>=12.0,<13.0)", "azure-mgmt-f
 
 [[package]]
 name = "wagtailcodeblock"
-version = "1.29.0.1"
+version = "0.1.dev202+g9992d29"
 description = "Wagtail Code Block provides PrismJS syntax highlighting in Wagtail."
 optional = false
 python-versions = ">=3.7"
-files = [
-    {file = "wagtailcodeblock-1.29.0.1-py3-none-any.whl", hash = "sha256:ed6a6bced7c5e76f55153770d3de323f26e2bbced13f3c300eb91e8418e3524c"},
-    {file = "wagtailcodeblock-1.29.0.1.tar.gz", hash = "sha256:dd833e8c79cf0870ca943ef0feee132b765f863ad2a4face91c66c5e634f04b8"},
-]
+files = []
+develop = false
 
 [package.dependencies]
 wagtail = ">=4"
+
+[package.source]
+type = "git"
+url = "https://github.com/trickeydan/wagtailcodeblock"
+reference = "HEAD"
+resolved_reference = "9992d291a10237ce5b1b6dcbf5eea33c5f3bb9bc"
 
 [[package]]
 name = "webencodings"
@@ -1706,4 +1710,4 @@ wand = ["Wand (>=0.6,<1.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "c2484394774bfc5a1d62de303e0444ea9d9e93d91cbd78cee80a262134fd9eb3"
+content-hash = "3769dd291031974488de8e37f373d70839e2e3bdd9824303e25f063bcdd98b0f"
