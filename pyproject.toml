@@ -8,7 +8,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-wagtail = "^5.2.2"  # LTS
+wagtail = "^6.0"  # LTS
 django = "^4.2"  # LTS
 
 # Django Apps

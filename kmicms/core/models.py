@@ -27,8 +27,8 @@ class SiteSettings(ClusterableModel, BaseSiteSetting):
         help_text="The initial year of copyright for the site.",
     )
 
-    main_menu = StreamField(MainMenuBlock(), blank=True, use_json_field=True)
-    footer_menu = StreamField(FooterMenuBlock(), blank=True, use_json_field=True)
+    main_menu = StreamField(MainMenuBlock(), blank=True)
+    footer_menu = StreamField(FooterMenuBlock(), blank=True)
 
     class Meta:
         verbose_name = "Site Settings"

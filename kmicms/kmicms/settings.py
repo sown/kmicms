@@ -1,9 +1,7 @@
 import os
-import platform
 
 from django.contrib.messages import constants as messages
 from django.core.exceptions import ImproperlyConfigured
-from pkg_resources import parse_version
 
 #
 # Environment setup
@@ -12,12 +10,6 @@ from pkg_resources import parse_version
 # Set the base directory two levels up
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
-
-# Validate Python version
-if parse_version(platform.python_version()) < parse_version("3.10.0"):  # pragma: nocover
-    raise RuntimeError(
-        f"KMI-CMS requires Python 3.10 or higher (current: Python {platform.python_version()})",
-    )
 
 #
 # Configuration import

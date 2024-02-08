@@ -9,7 +9,7 @@ class HomePage(Page):
     parent_page_types = ["wagtailcore.Page"]
     subpage_types = ["standard_page.StandardPage", "contact.ContactFormPage", "infra.NetboxInfrastructurePage"]
 
-    content = StreamField(BodyBlock(), use_json_field=True)
+    content = StreamField(BodyBlock())
 
     content_panels = [
         TitleFieldPanel("title"),
