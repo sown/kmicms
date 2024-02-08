@@ -2,7 +2,6 @@ from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.http import HttpRequest
 from django.template.response import TemplateResponse
 from wagtail.models import Page
-from wagtail.search.models import Query
 
 
 def search(request: HttpRequest) -> TemplateResponse:
@@ -12,10 +11,6 @@ def search(request: HttpRequest) -> TemplateResponse:
     # Search
     if search_query:
         search_results = Page.objects.live().search(search_query)
-        query = Query.get(search_query)
-
-        # Record hit
-        query.add_hit()
     else:
         search_results = Page.objects.none()
 

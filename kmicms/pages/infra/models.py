@@ -12,7 +12,7 @@ class NetboxInfrastructurePage(RoutablePageMixin, Page):
     max_count = 1
     subpage_types = []
 
-    content = StreamField(StoryBlock(), use_json_field=True)
+    content = StreamField(StoryBlock())
     device_description = RichTextField()
     vm_description = RichTextField()
 
