@@ -1,87 +1,66 @@
+from typing import Any
+
 from core.blocks import StoryBlock
-from django.conf import settings
-from django.http import Http404, HttpRequest, HttpResponse
-from integrations.netbox import NetboxClient, NetboxRequestError
-from wagtail.admin.panels import FieldPanel, TitleFieldPanel
-from wagtail.contrib.routable_page.models import RoutablePageMixin, path
-from wagtail.fields import RichTextField, StreamField
+from django.db import models
+from django.db.models.functions import Lower
+from django.http import HttpRequest
+from wagtail.admin.panels import FieldPanel, MultiFieldPanel, TitleFieldPanel
+from wagtail.fields import StreamField
 from wagtail.models import Page
 
 
-class NetboxInfrastructurePage(RoutablePageMixin, Page):
+class NetboxInfrastructurePage(Page):
     max_count = 1
+    # Intentionally empty to prevent manual creation of device and VM pages
     subpage_types = []
 
     content = StreamField(StoryBlock())
-    device_description = RichTextField()
-    vm_description = RichTextField()
 
     content_panels = [
         TitleFieldPanel("title"),
         FieldPanel("content"),
-        FieldPanel("device_description"),
-        FieldPanel("vm_description"),
     ]
 
-    def _get_client(self) -> NetboxClient:
-        return NetboxClient(
-            graphql_endpoint=settings.NETBOX_GRAPHQL_ENDPOINT,
-            api_token=settings.NETBOX_API_TOKEN,
-            cache_ttl_seconds=settings.NETBOX_CACHE_TTL,
-            request_timeout=settings.NETBOX_REQUEST_TIMEOUT,
-        )
+    class Meta:
+        verbose_name = "Netbox Index Page"
 
-    def _handle_error(self, request: HttpRequest) -> HttpResponse:
-        return self.render(
-            request,
-            template="infra/netbox_error.html",
-        )
+    def get_entity_pages(self, request: HttpRequest) -> models.QuerySet["NetboxEntityPage"]:
+        return NetboxEntityPage.objects.child_of(self).live().order_by(Lower("title"))
 
-    @path("devices/", name="device_index")
-    def device_index(self, request: HttpRequest) -> HttpResponse:
-        try:
-            client = self._get_client()
-            devices = client.list_devices()
-        except NetboxRequestError:
-            return self._handle_error(request)
+    def get_context(self, request: HttpRequest, *args: Any, **kwargs: Any) -> dict[Any]:
+        ctx = super().get_context(request, *args, **kwargs)
+        ctx["entity_results"] = self.get_entity_pages(request)
+        return ctx
 
-        return self.render(
-            request,
-            context_overrides={"devices": devices},
-            template="infra/netbox_device_index.html",
-        )
 
-    @path("devices/<int:device_id>/", name="device_view")
-    def device_info(self, request: HttpRequest, *, device_id: int) -> HttpResponse:
-        try:
-            client = self._get_client()
-            device = client.get_device(device_id)
-        except NetboxRequestError:
-            return self._handle_error(request)
+class NetboxEntityType(models.TextChoices):
+    DEVICE = "DEV", "Physical Device"
+    VM = "VM", "Virtual Machine"
 
-        if device is None:
-            raise Http404()
 
-        return self.render(request, context_overrides={"device": device}, template="infra/netbox_device_view.html")
+class NetboxEntityPage(Page):
+    parent_page_types = ["infra.NetboxInfrastructurePage"]
+    subpage_types = []
 
-    @path("vm/", name="vm_index")
-    def vm_index(self, request: HttpRequest) -> HttpResponse:
-        try:
-            client = self._get_client()
-            vms = client.list_vms()
-        except NetboxRequestError:
-            return self._handle_error(request)
-        return self.render(request, context_overrides={"vms": vms}, template="infra/netbox_vm_index.html")
+    netbox_name = models.CharField(max_length=255)
+    netbox_id = models.IntegerField(verbose_name="Netbox ID")
+    netbox_entity_type = models.CharField(max_length=3, choices=NetboxEntityType.choices)
+    netbox_data = models.JSONField()
 
-    @path("vm/<int:vm_id>/", name="vm_view")
-    def vm_info(self, request: HttpRequest, *, vm_id: int) -> HttpResponse:
-        try:
-            client = self._get_client()
-            vm = client.get_vm(vm_id)
-        except NetboxRequestError:
-            return self._handle_error(request)
+    content_panels = [
+        TitleFieldPanel("title"),
+        MultiFieldPanel(
+            [
+                FieldPanel("netbox_name", read_only=True),
+                FieldPanel("netbox_entity_type", read_only=True),
+                FieldPanel("netbox_id", read_only=True),
+            ],
+            heading="Netbox Info",
+        ),
+    ]
 
-        if vm is None:
-            raise Http404()
-
-        return self.render(request, context_overrides={"vm": vm}, template="infra/netbox_vm_view.html")
+    class Meta:
+        verbose_name = "Netbox Entity Page"
+        constraints = [
+            models.UniqueConstraint(fields=["netbox_id", "netbox_entity_type"], name="unique_id_for_netbox_entity")
+        ]

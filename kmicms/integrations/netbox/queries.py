@@ -53,18 +53,39 @@ query listDevices {
       name
       color
     }
+    description
+    comments
     platform {
       name
+    }
+    interfaces {
+      description
+      name
+      enabled
+      ip_addresses {
+        display
+        dns_name
+      }
     }
     device_type {
       model
       manufacturer {
         name
       }
+      front_image
+      rear_image
+    }
+    tags {
+      name
+      color
     }
     rack {
       name
     }
+    location {
+      name
+    }
+    position
     status
   }
 }
@@ -112,15 +133,33 @@ query listVMs {
   virtual_machine_list {
     id
     name
+    cluster {
+      name
+    }
     role {
       name
       color
     }
+    description
+    comments
     platform {
       name
     }
-    cluster {
+    interfaces {
+      description
       name
+      enabled
+      ip_addresses {
+        display
+        dns_name
+      }
+    }
+    vcpus
+    memory
+    disk
+    tags {
+      name
+      color
     }
     status
   }

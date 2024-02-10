@@ -1,0 +1,27 @@
+{% extends "layouts/page.html" %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1 class="heading">
+            {{ page.title }}
+        </h1>
+        {% include "components/breadcrumbs.html" %}
+
+        <div class="row">
+            <div class="col-md-6">
+                {% include "infra/inc/server_dl.html" with server=page.netbox_data %}
+            </div>
+            <div class="col-md-6">
+                <dl class="row">
+                    {% if page.netbox_entity_type == 'DEV' %}
+                        {% include "infra/inc/details_device.html" with device=page.netbox_data %}
+                    {% elif page.netbox_entity_type == 'VM' %}
+                        {% include "infra/inc/details_vm.html" with vm=page.netbox_data %}
+                    {% endif %}
+                </dl>
+            </div>
+        </div>
+
+        {% include "infra/inc/interface_table.html" with interfaces=page.netbox_data.interfaces %}
+    </div>
+{% endblock %}
