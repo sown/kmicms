@@ -1,5 +1,6 @@
 from django import forms
 from django_recaptcha.fields import ReCaptchaField
+from django_recaptcha.widgets import ReCaptchaV3
 from wagtail.contrib.forms.forms import FormBuilder
 
 
@@ -10,7 +11,7 @@ class ContactFormBuilder(FormBuilder):
     def formfields(self) -> dict:
         # Add wagtailcaptcha to formfields property
         fields = super().formfields
-        fields[self.CAPTCHA_FIELD_NAME] = ReCaptchaField(label="")
+        fields[self.CAPTCHA_FIELD_NAME] = ReCaptchaField(widget=ReCaptchaV3)
 
         return fields
 
