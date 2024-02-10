@@ -207,18 +207,6 @@ WAGTAILUSERS_PASSWORD_ENABLED = False
 USE_X_FORWARDED_HOST = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-# Discord Integration
-DISCORD_APP_CLIENT_ID = getattr(configuration, "DISCORD_APP_CLIENT_ID")
-DISCORD_APP_CLIENT_SECRET = getattr(configuration, "DISCORD_APP_CLIENT_SECRET")
-DISCORD_ACCESS_TOKEN_URL = "https://discordapp.com/api/oauth2/token"  # noqa: S105
-DISCORD_AUTHORIZE_URL = "https://discordapp.com/api/oauth2/authorize"
-DISCORD_REVOCATION_URL = "https://discord.com/api/oauth2/token/revoke"
-DISCORD_USERINFO_ENDPOINT = "https://discordapp.com/api/users/@me"
-DISCORD_CLIENT_KWARGS = {
-    "token_endpoint_auth_method": "client_secret_post",
-    "scope": "identify",
-}
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

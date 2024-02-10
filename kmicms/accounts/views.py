@@ -11,9 +11,10 @@ from django.contrib.auth.models import Group, Permission
 from django.shortcuts import redirect
 from django.urls import reverse
 from django.views import View
+from wagtail.models import Site
 
-from accounts.models import User
-from accounts.oauth import oauth_config
+from .models import User
+from .oauth import oauth_config
 
 
 class LoginView(auth_views.LoginView):
@@ -31,10 +32,16 @@ class LoginView(auth_views.LoginView):
 
         # If SSO is enabled, redirect immediately.
         if not settings.USE_CONVENTIONAL_AUTH:
+            request.session["sso_next"] = self.get_redirect_url()
+
             redirect_uri = request.build_absolute_uri(reverse("accounts:sso_oidc_redirect"))
             return oauth_config.sown.authorize_redirect(request, redirect_uri)
 
         return super().dispatch(request, *args, **kwargs)
+
+    def get_default_redirect_url(self) -> str:
+        site = Site.find_for_request(self.request)
+        return site.root_page.get_url()
 
 
 class SSOOIDCRedirectView(View):
@@ -54,8 +61,15 @@ class SSOOIDCRedirectView(View):
 
         login(request, user)
 
+        from_session = request.session.pop("sso_next", None)
+
+        redirect_to = from_session or self.get_default_redirect_url()
         messages.info(request, f"Signed in via SOWN SSO. Welcome {user.get_short_name()}")
-        return redirect("accounts:profile")
+        return redirect(redirect_to)
+
+    def get_default_redirect_url(self) -> str:
+        site = Site.find_for_request(self.request)
+        return site.root_page.get_url()
 
     def update_user(self, user: User, claims: dict[str, bool | str | list[str]]) -> User:
         full_name = claims.get("given_name", "")
