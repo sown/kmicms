@@ -12,7 +12,7 @@ ENV POETRY_NO_INTERACTION=1 \
 RUN pip install wheel poetry==1.7.1
 
 RUN apt-get update --yes --quiet && apt-get install --yes --quiet --no-install-recommends \
-    build-essential
+    build-essential git
 
 COPY pyproject.toml poetry.lock ./
 RUN touch README.md
