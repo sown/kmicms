@@ -8,8 +8,8 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-wagtail = "^6.0"  # LTS
-django = "^4.2"  # LTS
+wagtail = "^6.1"
+django = "^5.0"
 
 # Django Apps
 django-compressor = "^4.4"
