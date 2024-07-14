@@ -25,8 +25,6 @@ query DeviceInfo($deviceId: Int!) {
       manufacturer {
         name
       }
-      front_image
-      rear_image
     }
     tags {
       name
@@ -72,8 +70,6 @@ query listDevices {
       manufacturer {
         name
       }
-      front_image
-      rear_image
     }
     tags {
       name
