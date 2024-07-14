@@ -46,5 +46,5 @@ WAGTAILADMIN_BASE_URL = "https://kmicms.containers-1.sown.org.uk"
 
 NETBOX_GRAPHQL_ENDPOINT = "https://netbox.sown.org.uk/graphql/"
 NETBOX_API_TOKEN = os.environ.get("NETBOX_API_TOKEN")
-NETBOX_REQUEST_TIMEOUT = 0.5
+NETBOX_REQUEST_TIMEOUT = 5.0
 NETBOX_CACHE_TTL = 300
