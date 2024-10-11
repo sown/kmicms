@@ -14,7 +14,7 @@
         {% for subpage in entities %}
             <tr>
                 <td><a href="{% pageurl subpage %}">{{ subpage.title }}</a></td>
-                <td>{{ subpage.netbox_data.status }}</td>
+                <td>{{ subpage.netbox_data.status|title }}</td>
                 <td>{% include 'infra/inc/colored_badge.html' with info=subpage.netbox_data.role %}</td>
                 <td>{% if subpage.netbox_data.platform %}{{ subpage.netbox_data.platform.name }}{% else %}-{% endif %}</td>
                 <!-- <td>{{ device.rack.name }}</td> -->
